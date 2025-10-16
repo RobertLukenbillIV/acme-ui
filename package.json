@@ -1,0 +1,43 @@
+{
+  "name": "acme-ui",
+  "version": "1.0.0",
+  "description": "UI components for a multi-repo project for a fictional company.",
+  "main": "dist/acme-ui.umd.js",
+  "module": "dist/acme-ui.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/acme-ui.es.js",
+      "require": "./dist/acme-ui.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite --config vite.demo.config.js",
+    "build": "vite build",
+    "preview": "vite preview --config vite.demo.config.js"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "react",
+    "navigation",
+    "forms",
+    "cards"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^7.1.10"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  }
+}
