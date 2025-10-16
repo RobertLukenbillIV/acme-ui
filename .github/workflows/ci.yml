@@ -122,7 +122,7 @@ jobs:
       run: npm ci
       
     - name: Build demo
-      run: npm run preview -- --build
+      run: npm run build:demo
       
     - name: Upload demo artifacts
       uses: actions/upload-artifact@v4
