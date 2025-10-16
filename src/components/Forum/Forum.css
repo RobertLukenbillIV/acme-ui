@@ -1,0 +1,271 @@
+.acme-forum-message {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid #e1e8ed;
+}
+
+.acme-forum-message:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Header Section */
+.forum-header {
+  padding: 1rem 1.5rem 0.5rem;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.user-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e1e8ed;
+}
+
+.default-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: 2px solid #e1e8ed;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #00d084;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f1419;
+  margin-bottom: 0.25rem;
+}
+
+.user-role {
+  background: #e3f2fd;
+  color: #1976d2;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.message-timestamp {
+  font-size: 0.875rem;
+  color: #657786;
+}
+
+/* Content Section */
+.forum-content {
+  padding: 0.5rem 1.5rem 1rem;
+}
+
+.message-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #0f1419;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Reactions Display */
+.reactions-display {
+  padding: 0 1.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.reaction-badge {
+  background: #f7f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: #536471;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reaction-badge:hover {
+  background: #e8f5e8;
+  border-color: #00d084;
+  color: #00d084;
+}
+
+/* Actions Footer */
+.forum-actions {
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  background: #f8fafc;
+  border-top: 1px solid #e1e8ed;
+  gap: 0.5rem;
+  justify-content: space-around;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #657786;
+  transition: all 0.2s ease;
+  min-width: 80px;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  background: white;
+  color: #0f1419;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:active {
+  transform: translateY(1px);
+}
+
+/* Specific action button styles */
+.react-btn:hover {
+  color: #ff6b35;
+}
+
+.reply-btn:hover {
+  color: #1976d2;
+}
+
+.forward-btn:hover {
+  color: #00d084;
+}
+
+.report-btn:hover {
+  color: #f44336;
+}
+
+.action-icon {
+  font-size: 1rem;
+}
+
+.action-text {
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .acme-forum-message {
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+  }
+  
+  .forum-header {
+    padding: 0.75rem 1rem 0.5rem;
+  }
+  
+  .forum-content {
+    padding: 0.5rem 1rem 0.75rem;
+  }
+  
+  .forum-actions {
+    padding: 0.5rem 1rem;
+    gap: 0.25rem;
+  }
+  
+  .action-btn {
+    padding: 0.5rem 0.75rem;
+    min-width: 70px;
+    font-size: 0.8rem;
+  }
+  
+  .action-text {
+    display: none;
+  }
+  
+  .action-icon {
+    font-size: 1.1rem;
+  }
+  
+  .user-avatar,
+  .default-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .user-name {
+    font-size: 0.9rem;
+  }
+  
+  .message-timestamp {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forum-header {
+    padding: 0.5rem 0.75rem 0.5rem;
+  }
+  
+  .forum-content {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .forum-actions {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .user-profile {
+    gap: 0.75rem;
+  }
+  
+  .action-btn {
+    padding: 0.4rem 0.5rem;
+    min-width: 60px;
+  }
+}

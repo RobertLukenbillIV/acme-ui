@@ -5,10 +5,10 @@ This is a React component library built for multi-repo projects, providing reusa
 
 ## Components
 
-### Navigation
-**File**: `src/components/Navigation/Navigation.jsx`
+### Footnote
+**File**: `src/components/Footnote/Footnote.jsx`
 
-A left-aligned expandable navigation sidebar with a hamburger menu toggle.
+A flexible footer/footnote component that can be displayed as a full-width footer or contained card.
 
 **Props**:
 - `companyName` (string, default: "Acme Corp") - The company name displayed when expanded
@@ -31,6 +31,115 @@ A left-aligned expandable navigation sidebar with a hamburger menu toggle.
 - Expanded width: 250px
 - Smooth animations
 - Dark theme (#2c3e50 background)
+
+**Props**:
+- `variant` (string, default: "footer") - Display variant: "footer" or "card"
+- `content` (node) - Content to display in the footnote body
+- `socialLinks` (array) - Array of social media link objects with `href`, `label`, and optional `icon` properties
+- `pageLinks` (array) - Array of page link objects with `href` and `label` properties
+
+**Example**:
+```jsx
+<Footnote 
+  variant="footer"
+  content={<p>Footer content</p>}
+  socialLinks={[
+    { href: 'https://twitter.com', label: 'Twitter', icon: '🐦' }
+  ]}
+  pageLinks={[
+    { href: '/privacy', label: 'Privacy Policy' }
+  ]}
+/>
+```
+
+---
+
+### ImageGallery
+**File**: `src/components/ImageGallery/ImageGallery.jsx`
+
+A responsive image gallery with thumbnail grid and optional lightbox functionality.
+
+**Props**:
+- `images` (array) - Array of image objects with `src`, optional `thumbnail`, `alt`, and `caption` properties
+- `columns` (number, default: 3) - Number of columns in the grid
+- `showLightbox` (boolean, default: true) - Enable lightbox functionality
+
+**Example**:
+```jsx
+<ImageGallery 
+  images={[
+    { 
+      src: '/full-image.jpg', 
+      thumbnail: '/thumb.jpg',
+      alt: 'Description',
+      caption: 'Image caption'
+    }
+  ]}
+  columns={3}
+  showLightbox={true}
+/>
+```
+
+---
+
+### Hero
+**File**: `src/components/Hero/Hero.jsx`
+
+A hero banner component with background image support and scroll-responsive variants.
+
+**Props**:
+- `backgroundImage` (string) - URL of the background image
+- `title` (string) - Hero title text
+- `subtitle` (string) - Hero subtitle text
+- `variant` (string, default: "static") - "static" or "scroll-responsive"
+- `height` (string, default: "100vh") - CSS height value
+- `overlay` (boolean, default: true) - Show dark overlay over background image
+- `overlayOpacity` (number, default: 0.4) - Opacity of the overlay
+
+**Example**:
+```jsx
+<Hero 
+  backgroundImage="/hero-bg.jpg"
+  title="Welcome"
+  subtitle="Your amazing website"
+  variant="scroll-responsive"
+  height="80vh"
+/>
+```
+
+---
+
+### Forum
+**File**: `src/components/Forum/Forum.jsx`
+
+A forum message component with user profile, message content, and action buttons.
+
+**Props**:
+- `user` (object) - User object with `name`, optional `avatar`, `role`, and `isOnline` properties
+- `message` (string) - Message content
+- `timestamp` (Date) - Message timestamp
+- `reactions` (array) - Array of reaction objects with `emoji` and `count` properties
+- `onReact` (function) - React button click handler
+- `onReply` (function) - Reply button click handler
+- `onForward` (function) - Forward button click handler
+- `onReport` (function) - Report button click handler
+
+**Example**:
+```jsx
+<Forum 
+  user={{
+    name: 'John Doe',
+    avatar: '/avatar.jpg',
+    role: 'Moderator',
+    isOnline: true
+  }}
+  message="Welcome to our forum!"
+  timestamp={new Date()}
+  onReact={handleReact}
+  onReply={handleReply}
+  reactions={[{ emoji: '👍', count: 5 }]}
+/>
+```
 
 ---
 
