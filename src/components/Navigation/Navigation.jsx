@@ -24,8 +24,8 @@ const Navigation = ({ companyName = "Acme Corp", links = [] }) => {
       </div>
       {isExpanded && (
         <ul className="nav-links">
-          {links.map((link, index) => (
-            <li key={index} className="nav-link-item">
+          {links.map((link) => (
+            <li key={link.href} className="nav-link-item">
               <a href={link.href} className="nav-link">
                 {link.label}
               </a>
