@@ -22,13 +22,28 @@ const ImageGallery = ({
     setLightboxIndex(0);
   };
 
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState('');
+
   const navigateLightbox = (direction) => {
-    const newIndex = direction === 'next' 
-      ? (lightboxIndex + 1) % images.length
-      : (lightboxIndex - 1 + images.length) % images.length;
+    if (isTransitioning) return; // Prevent rapid clicking
     
-    setLightboxIndex(newIndex);
-    setSelectedImage(images[newIndex]);
+    setIsTransitioning(true);
+    setTransitionDirection(direction);
+    
+    setTimeout(() => {
+      const newIndex = direction === 'next' 
+        ? (lightboxIndex + 1) % images.length
+        : (lightboxIndex - 1 + images.length) % images.length;
+      
+      setLightboxIndex(newIndex);
+      setSelectedImage(images[newIndex]);
+      
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setTransitionDirection('');
+      }, 150);
+    }, 150);
   };
 
   const handleKeyDown = (e) => {
@@ -118,11 +133,13 @@ const ImageGallery = ({
               </>
             )}
             
-            <img 
-              src={selectedImage.src} 
-              alt={selectedImage.alt || 'Lightbox image'}
-              className="lightbox-image"
-            />
+            <div className="lightbox-image-container">
+              <img 
+                src={selectedImage.src} 
+                alt={selectedImage.alt || 'Lightbox image'}
+                className={`lightbox-image ${isTransitioning ? `transitioning-${transitionDirection}` : ''}`}
+              />
+            </div>
             
             {selectedImage.caption && (
               <div className="lightbox-caption">

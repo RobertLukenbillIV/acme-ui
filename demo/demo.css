@@ -13,7 +13,106 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  
+  /* Original light mode color variables */
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --card-background: #ffffff;
+  --border-color: #ddd;
+  --page-background: transparent;
+  --button-hover-bg: #f8f9fa;
 }
+
+/* GitHub Dark Mode Color Palette */
+[data-theme="dark"] body {
+  background-color: #0d1117;
+  color: #e6edf3;
+  
+  /* Dark mode GitHub color variables */
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --card-background: #161b22;
+  --border-color: #30363d;
+  --page-background: transparent;
+  --button-hover-bg: #21262d;
+}
+
+[data-theme="dark"] .demo-container {
+  background-color: #0d1117;
+}
+
+[data-theme="dark"] .demo-content {
+  background-color: #0d1117;
+}
+
+[data-theme="dark"] .demo-header h1 {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .demo-header p {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .demo-section h2 {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .demo-section > p {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .demo-button {
+  background-color: #21262d;
+  color: #e6edf3;
+  border-color: #30363d;
+}
+
+[data-theme="dark"] .demo-button:hover {
+  background-color: #30363d;
+}
+
+[data-theme="dark"] .demo-button.primary {
+  background-color: #238636;
+  color: #ffffff;
+  border-color: #238636;
+}
+
+[data-theme="dark"] .demo-button.primary:hover {
+  background-color: #2ea043;
+}
+
+[data-theme="dark"] .code-block {
+  background-color: #161b22;
+  color: #e6edf3;
+}
+
+/* App layout styles */
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Add padding only to non-hero content */
+.main-content > div:not(.acme-hero) {
+  padding-top: 80px; /* Space for top navigation */
+}
+
+/* Center-aligned content with proper margins for non-hero elements */
+.main-content > div:not(.acme-hero) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+/* No content margin adjustments needed for corner navigation */
+/* Corner navs float over content instead of pushing it */
 
 .demo-container {
   display: flex;
@@ -68,16 +167,17 @@ body {
 
 .demo-button {
   padding: 10px 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color, #ddd);
   border-radius: 4px;
-  background-color: white;
+  background-color: var(--card-background, white);
+  color: var(--text-primary, #24292f);
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s ease;
 }
 
 .demo-button:hover {
-  background-color: #f8f9fa;
+  background-color: var(--button-hover-bg, #f6f8fa);
 }
 
 .demo-button.primary {
