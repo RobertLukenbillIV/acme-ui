@@ -893,7 +893,6 @@ We welcome contributions! Please see our contributing guidelines for details on:
 ## 🔗 Links
 
 - **Demo Site**: [Live Examples](http://localhost:3000)
-- **Documentation**: [Component Docs](./COMPONENTS.md)
 - **GitHub**: [Source Code](https://github.com/RobertLukenbillIV/acme-ui)
 
 ## 📄 License
