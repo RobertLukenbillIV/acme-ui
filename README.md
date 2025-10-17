@@ -325,9 +325,12 @@ export default App;
 
 ### Scripts
 ```bash
-npm run dev          # Start demo development server
-npm run build        # Build library for distribution
-npm run test         # Run test suite
+npm run dev           # Start demo development server
+npm run build         # Build library for distribution
+npm run build:demo    # Build demo for deployment
+npm run preview:demo  # Preview built demo locally
+npm run deploy        # Deploy demo to Vercel
+npm run test          # Run test suite
 npm run test:coverage # Run tests with coverage
 ```
 
@@ -404,6 +407,29 @@ acme-ui/
 - **UMD**: `dist/acme-ui.umd.js` 
 - **Styles**: `dist/acme-ui.css`
 - **Bundle Size**: ~45KB (minified + gzipped)
+
+## 🚀 Demo Deployment
+
+The demo application can be deployed to Vercel for live showcase:
+
+### Quick Deploy to Vercel
+```bash
+# Install Vercel CLI (if not installed)
+npm install -g vercel
+
+# Build and deploy
+npm run deploy
+```
+
+### Manual Vercel Setup
+1. Visit [vercel.com](https://vercel.com) and connect your GitHub
+2. Import the `acme-ui` repository
+3. Configure build settings:
+   - **Build Command**: `npm run build:demo`
+   - **Output Directory**: `demo-dist`
+   - **Install Command**: `npm install`
+
+The `vercel.json` configuration is already set up for optimal deployment.
 
 ## 🤝 Contributing
 

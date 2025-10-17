@@ -16,8 +16,10 @@
   "scripts": {
     "dev": "vite --config vite.demo.config.js",
     "build": "vite build",
-    "build:demo": "vite build --config vite.demo.config.js",
+    "build:demo": "vite build --config vite.demo.config.js --emptyOutDir",
     "preview": "vite preview --config vite.demo.config.js",
+    "preview:demo": "vite preview --config vite.demo.config.js --outDir demo-dist",
+    "deploy": "npm run build:demo && vercel --prod",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
