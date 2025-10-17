@@ -12,3 +12,4 @@ export { default as Footnote } from './components/Footnote';
 export { default as ImageGallery } from './components/ImageGallery';
 export { default as Hero } from './components/Hero';
 export { default as Forum } from './components/Forum';
+export { default as TabbedCard } from './components/TabbedCard';

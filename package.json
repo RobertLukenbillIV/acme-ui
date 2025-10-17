@@ -1,7 +1,7 @@
 {
   "name": "acme-ui",
   "version": "1.0.0",
-  "description": "UI components for a multi-repo project for a fictional company.",
+  "description": "A comprehensive React UI components library with navigation, forms, cards, tabbed interfaces, hero sections, and dark mode support. Built for modern web applications with accessibility and responsive design.",
   "main": "dist/acme-ui.umd.js",
   "module": "dist/acme-ui.es.js",
   "exports": {
@@ -23,12 +23,22 @@
     "test:coverage": "jest --coverage"
   },
   "keywords": [
+    "react",
     "ui",
     "components",
-    "react",
+    "library",
     "navigation",
     "forms",
-    "cards"
+    "cards",
+    "tabs",
+    "tabbed-card",
+    "hero",
+    "forum",
+    "gallery",
+    "dark-mode",
+    "responsive",
+    "accessibility",
+    "typescript-ready"
   ],
   "author": "",
   "license": "ISC",
