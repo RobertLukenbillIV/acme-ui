@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "name": "acme-ui-demo",
+  "buildCommand": "npm run build:demo",
+  "outputDirectory": "demo-dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "headers": { "cache-control": "max-age=31536000" }
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
