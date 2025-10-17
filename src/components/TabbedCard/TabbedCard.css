@@ -1,0 +1,277 @@
+.acme-tabbed-card {
+  background: var(--card-background, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  border: 1px solid var(--border-color, #ddd);
+}
+
+.acme-tabbed-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Header Section */
+.tabbed-card-header {
+  padding: 1.5rem 1.5rem 0;
+  border-bottom: none;
+}
+
+.tabbed-card-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #2c3e50);
+  transition: color 0.3s ease;
+}
+
+/* Tabs Navigation */
+.tabbed-card-tabs {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid var(--border-color, #ddd);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabbed-card-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-button {
+  flex: 1;
+  min-width: max-content;
+  background: none;
+  border: none;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary, #7f8c8d);
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.tab-button:hover:not(.disabled) {
+  background-color: rgba(52, 152, 219, 0.05);
+  color: var(--text-primary, #2c3e50);
+}
+
+.tab-button.active {
+  color: #3498db;
+  border-bottom-color: #3498db;
+  background-color: rgba(52, 152, 219, 0.08);
+}
+
+.tab-button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.tab-icon {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.tab-label {
+  font-weight: 500;
+}
+
+.tab-badge {
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  min-width: 1.2rem;
+  text-align: center;
+  line-height: 1;
+}
+
+.tab-button.active .tab-badge {
+  background-color: #3498db;
+}
+
+/* Tab Content */
+.tabbed-card-content {
+  padding: 1.5rem;
+  min-height: 200px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-content-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary, #2c3e50);
+}
+
+.tab-content-body {
+  line-height: 1.6;
+  color: var(--text-primary, #2c3e50);
+}
+
+.tab-content-body p {
+  margin: 0 0 1rem 0;
+}
+
+.tab-content-body p:last-child {
+  margin-bottom: 0;
+}
+
+.tab-content-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #ddd);
+}
+
+/* Empty State */
+.acme-tabbed-card.empty .no-tabs-message {
+  color: var(--text-secondary, #7f8c8d);
+  font-style: italic;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Variants */
+.acme-tabbed-card.compact .tabbed-card-content {
+  padding: 1rem;
+  min-height: 150px;
+}
+
+.acme-tabbed-card.compact .tab-button {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+}
+
+.acme-tabbed-card.large .tabbed-card-content {
+  padding: 2rem;
+  min-height: 300px;
+}
+
+.acme-tabbed-card.large .tab-button {
+  padding: 1.25rem 2rem;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tabbed-card-tabs {
+    overflow-x: scroll;
+    scrollbar-width: thin;
+  }
+  
+  .tab-button {
+    flex: none;
+    min-width: 120px;
+    padding: 0.875rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .tabbed-card-content {
+    padding: 1rem;
+  }
+  
+  .tab-badge {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabbed-card-header {
+    padding: 1rem 1rem 0;
+  }
+  
+  .tab-button {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+  }
+  
+  .tabbed-card-content {
+    padding: 0.75rem;
+  }
+  
+  .tab-icon {
+    display: none; /* Hide icons on very small screens */
+  }
+}
+
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-tabbed-card {
+  background: var(--card-background, #161b22);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  border-color: var(--border-color, #30363d);
+}
+
+[data-theme="dark"] .acme-tabbed-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .tabbed-card-title {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .tabbed-card-tabs {
+  background-color: rgba(240, 246, 252, 0.02);
+  border-bottom-color: var(--border-color, #30363d);
+}
+
+[data-theme="dark"] .tab-button {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .tab-button:hover:not(.disabled) {
+  background-color: rgba(88, 166, 255, 0.1);
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .tab-button.active {
+  color: #58a6ff;
+  border-bottom-color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.15);
+}
+
+[data-theme="dark"] .tab-content-title {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .tab-content-body {
+  color: var(--text-primary, #e6edf3);
+}
+
+[data-theme="dark"] .tab-content-footer {
+  border-top-color: var(--border-color, #30363d);
+}
+
+[data-theme="dark"] .tab-badge {
+  background-color: #f85149;
+}
+
+[data-theme="dark"] .tab-button.active .tab-badge {
+  background-color: #58a6ff;
+}
+
+[data-theme="dark"] .acme-tabbed-card.empty .no-tabs-message {
+  color: var(--text-secondary, #8b949e);
+}
