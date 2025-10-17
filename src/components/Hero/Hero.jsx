@@ -6,7 +6,7 @@ const Hero = ({
   title,
   subtitle,
   children,
-  variant = 'static', // 'static' or 'scroll-responsive'
+  variant = 'static', // 'static', 'scroll-responsive', or 'sticky-third'
   height = '100vh',
   overlay = true,
   overlayOpacity = 0.4,
@@ -14,16 +14,23 @@ const Hero = ({
 }) => {
   const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    if (variant === 'scroll-responsive') {
+    if (variant === 'scroll-responsive' || variant === 'sticky-third') {
       const handleScroll = () => {
         const currentScrollY = window.scrollY;
         setScrollY(currentScrollY);
         
         // Determine if user has scrolled away from hero
         const heroHeight = window.innerHeight;
+        const scrollThreshold = heroHeight * 0.7; // When hero would be cut off
+        
         setIsScrolled(currentScrollY > heroHeight * 0.3);
+        
+        if (variant === 'sticky-third') {
+          setIsSticky(currentScrollY > scrollThreshold);
+        }
       };
 
       window.addEventListener('scroll', handleScroll, { passive: true });
@@ -37,11 +44,11 @@ const Hero = ({
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
   };
 
-  if (variant === 'scroll-responsive') {
+  if (variant === 'scroll-responsive' && !isSticky) {
     heroStyle.transform = `translateY(${scrollY * 0.5}px)`;
   }
 
-  const heroClass = `acme-hero ${variant} ${isScrolled ? 'scrolled' : ''} ${className}`;
+  const heroClass = `acme-hero ${variant} ${isScrolled ? 'scrolled' : ''} ${isSticky ? 'sticky' : ''} ${className}`;
 
   return (
     <section 

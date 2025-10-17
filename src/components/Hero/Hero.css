@@ -1,6 +1,7 @@
 .acme-hero {
   position: relative;
-  width: 100%;
+  width: 100vw; /* Full viewport width */
+  margin-left: calc(-50vw + 50%); /* Center and extend to full width */
   height: var(--hero-height, 100vh);
   display: flex;
   align-items: center;
@@ -30,6 +31,34 @@
   height: 50vh;
   transform: scale(0.8) !important;
   opacity: 0.7;
+}
+
+/* Sticky-third variant */
+.acme-hero.sticky-third {
+  position: relative;
+  /* Remove transition for instant effect */
+}
+
+.acme-hero.sticky-third.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw !important; /* Full viewport width */
+  height: 33vh !important;
+  z-index: 10;
+  background-position: center top;
+  background-size: cover;
+  margin: 0 !important; /* Remove any margins */
+}
+
+.acme-hero.sticky-third.sticky .hero-content {
+  opacity: 0.8;
+  transform: scale(0.8);
+}
+
+.acme-hero.sticky-third.sticky .scroll-indicator {
+  display: none;
 }
 
 /* Hero overlay */
@@ -188,4 +217,32 @@
   .acme-hero {
     background-attachment: scroll;
   }
+}
+
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-hero.scroll-responsive + * {
+  background: #0d1117;
+}
+
+[data-theme="dark"] .hero-content {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .hero-title {
+  color: #f0f6fc;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .hero-subtitle {
+  color: #e6edf3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="dark"] .scroll-indicator {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .scroll-arrow,
+[data-theme="dark"] .scroll-text {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }

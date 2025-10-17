@@ -173,21 +173,25 @@
   transform: translateY(1px);
 }
 
-/* Specific action button styles */
+/* Specific action button styles - Blue theme */
 .react-btn:hover {
-  color: #ff6b35;
+  color: #3498db;
+  background-color: rgba(52, 152, 219, 0.1);
 }
 
 .reply-btn:hover {
-  color: #1976d2;
+  color: #2980b9;
+  background-color: rgba(41, 128, 185, 0.1);
 }
 
 .forward-btn:hover {
-  color: #00d084;
+  color: #1abc9c;
+  background-color: rgba(26, 188, 156, 0.1);
 }
 
 .report-btn:hover {
-  color: #f44336;
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
 }
 
 .action-icon {
@@ -268,4 +272,88 @@
     padding: 0.4rem 0.5rem;
     min-width: 60px;
   }
+}
+
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-forum-message {
+  background: #161b22;
+  border-color: #30363d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .acme-forum-message:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .forum-header {
+  border-bottom-color: #30363d;
+}
+
+[data-theme="dark"] .user-avatar,
+[data-theme="dark"] .default-avatar {
+  border-color: #30363d;
+}
+
+[data-theme="dark"] .user-name {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .user-role {
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+}
+
+[data-theme="dark"] .message-timestamp {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .message-text {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .reaction-badge {
+  background: #21262d;
+  border-color: #30363d;
+  color: #8b949e;
+}
+
+[data-theme="dark"] .reaction-badge:hover {
+  background: rgba(46, 160, 67, 0.1);
+  border-color: #2ea043;
+  color: #2ea043;
+}
+
+[data-theme="dark"] .forum-actions {
+  background: #0d1117;
+  border-top-color: #30363d;
+}
+
+[data-theme="dark"] .action-btn {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .action-btn:hover {
+  background: #21262d;
+  color: #f0f6fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .react-btn:hover {
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+[data-theme="dark"] .reply-btn:hover {
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+[data-theme="dark"] .forward-btn:hover {
+  color: #2ea043;
+  background-color: rgba(46, 160, 67, 0.1);
+}
+
+[data-theme="dark"] .report-btn:hover {
+  color: #f85149;
+  background-color: rgba(248, 81, 73, 0.1);
 }

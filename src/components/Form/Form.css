@@ -70,3 +70,41 @@
   font-size: 14px;
   color: #333;
 }
+
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-form-label {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .acme-form-input,
+[data-theme="dark"] .acme-form-select,
+[data-theme="dark"] .acme-form-textarea {
+  background-color: #0d1117;
+  border-color: #30363d;
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .acme-form-input:focus,
+[data-theme="dark"] .acme-form-select:focus,
+[data-theme="dark"] .acme-form-textarea:focus {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+}
+
+[data-theme="dark"] .acme-form-input.error,
+[data-theme="dark"] .acme-form-select.error,
+[data-theme="dark"] .acme-form-textarea.error {
+  border-color: #f85149;
+}
+
+[data-theme="dark"] .acme-form-error {
+  color: #f85149;
+}
+
+[data-theme="dark"] .checkbox-text {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .required-star {
+  color: #f85149;
+}

@@ -1,15 +1,74 @@
 import React, { useState } from 'react';
 import './Navigation.css';
 
-const Navigation = ({ companyName = "Acme Corp", links = [] }) => {
+const Navigation = ({ 
+  companyName = "Acme Corp", 
+  links = [], 
+  position = 'left', // 'left', 'right', 'top'
+  variant = 'sidebar' // 'sidebar', 'dropdown'
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [openSubmenus, setOpenSubmenus] = useState({});
 
   const toggleNavigation = () => {
     setIsExpanded(!isExpanded);
+    setOpenSubmenus({}); // Close all submenus when toggling main nav
   };
 
+  const toggleSubmenu = (linkKey, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenSubmenus(prev => ({
+      ...prev,
+      [linkKey]: !prev[linkKey]
+    }));
+  };
+
+  const renderNavLinks = (navLinks, level = 0) => {
+    return (
+      <ul className={`nav-links level-${level}`}>
+        {navLinks.map((link, index) => {
+          const linkKey = `${level}-${index}`;
+          const hasChildren = link.children && link.children.length > 0;
+          
+          return (
+            <li key={linkKey} className={`nav-link-item ${hasChildren ? 'has-children' : ''} ${openSubmenus[linkKey] ? 'open' : ''}`}>
+              <div className="nav-link-wrapper">
+                <a 
+                  href={link.href || '#'} 
+                  className="nav-link"
+                  onClick={link.onClick}
+                >
+                  {link.label}
+                </a>
+                {hasChildren && (
+                  <button 
+                    className="submenu-toggle"
+                    onClick={(e) => toggleSubmenu(linkKey, e)}
+                    aria-label={`Toggle ${link.label} submenu`}
+                  >
+                    <span className={`arrow ${openSubmenus[linkKey] ? 'open' : ''}`}>
+                      {position === 'top' ? '▼' : '▶'}
+                    </span>
+                  </button>
+                )}
+              </div>
+              {hasChildren && openSubmenus[linkKey] && (
+                <div className="submenu">
+                  {renderNavLinks(link.children, level + 1)}
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
+  const navClasses = `acme-navigation ${position} ${variant} ${isExpanded ? 'expanded' : 'collapsed'}`;
+
   return (
-    <nav className={`acme-navigation ${isExpanded ? 'expanded' : 'collapsed'}`}>
+    <nav className={navClasses}>
       <div className="nav-header">
         <button 
           className="nav-toggle" 
@@ -20,18 +79,20 @@ const Navigation = ({ companyName = "Acme Corp", links = [] }) => {
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
         </button>
-        {isExpanded && <span className="company-name">{companyName}</span>}
+        {isExpanded && variant === 'sidebar' && (
+          <span className="company-name">{companyName}</span>
+        )}
       </div>
+      
       {isExpanded && (
-        <ul className="nav-links">
-          {links.map((link) => (
-            <li key={link.href} className="nav-link-item">
-              <a href={link.href} className="nav-link">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="nav-content">
+          {variant === 'dropdown' && position === 'top' && (
+            <div className="company-header">
+              <span className="company-name">{companyName}</span>
+            </div>
+          )}
+          {renderNavLinks(links)}
+        </div>
       )}
     </nav>
   );

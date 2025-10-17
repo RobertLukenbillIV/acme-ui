@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from '../src/components/Navigation';
 import { TextInput, Select, Checkbox, TextArea } from '../src/components/Form';
 import Card from '../src/components/Card';
@@ -7,24 +8,67 @@ import Footnote from '../src/components/Footnote';
 import ImageGallery from '../src/components/ImageGallery';
 import Hero from '../src/components/Hero';
 import Forum from '../src/components/Forum';
+import HomePage from './pages/HomePage.jsx';
+import StaticHeroPage from './pages/StaticHeroPage.jsx';
+import StickyHeroPage from './pages/StickyHeroPage.jsx';
+import GalleryPage from './pages/GalleryPage.jsx';
+import ForumPage from './pages/ForumPage.jsx';
+import FormsPage from './pages/FormsPage.jsx';
+import UIComponentsPage from './pages/UIComponentsPage.jsx';
+import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
-const Demo = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    country: '',
-    message: '',
-    newsletter: false
-  });
+const navigationLinks = [
+  { 
+    label: 'Home', 
+    href: '/', 
+    children: [
+      { label: 'Overview', href: '/' },
+      { label: 'Getting Started', href: '#getting-started' }
+    ]
+  },
+  { 
+    label: 'Components', 
+    href: '#components',
+    children: [
+      { label: 'Forms', href: '/forms' },
+      { label: 'UI Components', href: '/ui-components' },
+      { label: 'Community', href: '/forum' }
+    ]
+  },
+  { 
+    label: 'Layout', 
+    href: '#layout',
+    children: [
+      { label: 'Hero Variants', href: '#heroes', children: [
+        { label: 'Static Hero', href: '/static-hero' },
+        { label: 'Sticky Hero', href: '/sticky-hero' }
+      ]},
+      { label: 'Navigation', href: '#navigation' },
+      { label: 'Gallery Examples', href: '/gallery' }
+    ]
+  },
+  { 
+    label: 'Resources', 
+    href: '#resources',
+    children: [
+      { label: 'Documentation', href: '#docs' },
+      { label: 'API Reference', href: '#api' },
+      { label: 'Examples', href: '#examples' },
+      {
+        label: 'Advanced',
+        href: '#advanced',
+        children: [
+          { label: 'Custom Themes', href: '#themes' },
+          { label: 'Accessibility', href: '#a11y' },
+          { label: 'Performance', href: '#performance' }
+        ]
+      }
+    ]
+  }
+];
 
-  const navigationLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'Products', href: '#products' },
-    { label: 'Services', href: '#services' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Contact', href: '#contact' }
-  ];
+const Demo = () => {
 
   const countryOptions = [
     { value: 'us', label: 'United States' },
@@ -93,251 +137,167 @@ const Demo = () => {
     console.log(`Forum action: ${action}`);
   };
 
+  return null; // This component is not used anymore
+};
+
+function AppContent() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const { isDarkMode, toggleTheme } = useTheme();
+
+  const socialLinks = [
+    { label: 'GitHub', href: 'https://github.com/example/acme-ui' },
+    { label: 'Twitter', href: 'https://twitter.com/acme-ui' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/company/acme-ui' }
+  ];
+
+  const pageLinks = [
+    { label: 'Documentation', href: '/docs' },
+    { label: 'Support', href: '/support' },
+    { label: 'Privacy Policy', href: '/privacy' },
+    { label: 'Terms of Service', href: '/terms' }
+  ];
+
   return (
-    <>
-      {/* Hero Section - Full width at top */}
-      <Hero 
-        backgroundImage="https://picsum.photos/1920/1080?random=hero"
-        title="Acme UI Components Library"
-        subtitle="Beautiful, reusable React components for modern web applications"
-        variant="static"
-        height="70vh"
-      >
-        <button className="demo-button primary" style={{ marginTop: '1rem' }}>
-          Get Started
-        </button>
-      </Hero>
+    <div className="app">
+      {/* Left Sidebar Navigation - Always visible */}
+      <Navigation 
+        companyName="Acme UI" 
+        links={navigationLinks}
+        position="left"
+        variant="sidebar"
+      />
+
+      {/* Right Sidebar Navigation - Only on home page */}
+      {isHomePage && (
+        <Navigation 
+          companyName="Quick Access" 
+          links={[
+            { label: 'Forms', href: '/forms' },
+            { label: 'UI Components', href: '/ui-components' },
+            { label: 'Gallery', href: '/gallery' },
+            { label: 'Community', href: '/forum' }
+          ]}
+          position="right"
+          variant="sidebar"
+        />
+      )}
+
+      {/* Top Center Dropdown Navigation - Only on home page */}
+      {isHomePage && (
+        <Navigation 
+          companyName="Examples" 
+          links={[
+            { label: 'Heroes', href: '#heroes', children: [
+              { label: 'Static', href: '/static-hero' },
+              { label: 'Sticky', href: '/sticky-hero' }
+            ]},
+            { label: 'Component Types', href: '#components', children: [
+              { label: 'Forms', href: '/forms' },
+              { label: 'UI Components', href: '/ui-components' },
+              { label: 'Community', href: '/forum' }
+            ]}
+          ]}
+          position="top"
+          variant="dropdown"
+        />
+      )}
       
-      <div className="demo-container">
-        <Navigation companyName="Acme Corp" links={navigationLinks} />
-        
-        <div className="demo-content">
-        <header className="demo-header">
-          <h1>Component Showcase</h1>
-          <p>Explore our comprehensive collection of UI components</p>
-        </header>
-
-        <section className="demo-section">
-          <h2>Navigation Component</h2>
-          <p>Click the 3-line menu button on the left to expand/collapse the navigation bar.</p>
-        </section>
-
-        <section className="demo-section">
-          <h2>Hero Component</h2>
-          <Card title="Hero Variants">
-            <p>The hero component above demonstrates a static hero with background image and overlay.</p>
-            <p>Available variants:</p>
-            <ul>
-              <li><strong>Static:</strong> Fixed hero section</li>
-              <li><strong>Scroll-responsive:</strong> Hero that transforms on scroll (halves in size)</li>
-            </ul>
-          </Card>
-        </section>
-
-        <section className="demo-section">
-          <h2>Image Gallery Component</h2>
-          <Card title="Photo Gallery">
-            <p>Click on any image to open the lightbox view with navigation controls.</p>
-            <ImageGallery 
-              images={sampleImages}
-              columns={2}
-              showLightbox={true}
-            />
-          </Card>
-        </section>
-
-        <section className="demo-section">
-          <h2>Forum Component</h2>
-          <Card title="Message Thread">
-            <p>Interactive forum messages with user profiles and action buttons.</p>
-            <Forum 
-              user={sampleUser}
-              message="Welcome to the Acme UI Components Library! This forum component demonstrates how to display user messages with profile information and interactive action buttons. Feel free to explore all the features."
-              timestamp={new Date(Date.now() - 1000 * 60 * 30)} // 30 minutes ago
-              onReact={() => handleForumAction('react')}
-              onReply={() => handleForumAction('reply')}
-              onForward={() => handleForumAction('forward')}
-              onReport={() => handleForumAction('report')}
-              reactions={[
-                { emoji: '👍', count: 5 },
-                { emoji: '❤️', count: 2 },
-                { emoji: '🎉', count: 1 }
-              ]}
-            />
-            
-            <Forum 
-              user={{
-                name: 'Bob Smith',
-                avatar: 'https://picsum.photos/100/100?random=person2',
-                role: 'User',
-                isOnline: false
-              }}
-              message="Thanks for sharing this component library! The documentation is very helpful and the components look great."
-              timestamp={new Date(Date.now() - 1000 * 60 * 15)} // 15 minutes ago
-              onReact={() => handleForumAction('react')}
-              onReply={() => handleForumAction('reply')}
-              onForward={() => handleForumAction('forward')}
-              onReport={() => handleForumAction('report')}
-              reactions={[
-                { emoji: '👍', count: 3 },
-                { emoji: '💯', count: 1 }
-              ]}
-            />
-          </Card>
-        </section>
-
-        <section className="demo-section">
-          <h2>Card Component</h2>
-          <div className="card-grid">
-            <Card title="Welcome Card">
-              <p>This is a basic card component with a title and content.</p>
-              <p>Cards are great for organizing content in a clean, contained format.</p>
-            </Card>
-
-            <Card 
-              title="Card with Footer" 
-              footer={<button className="demo-button">Action Button</button>}
-            >
-              <p>This card includes a footer section for actions or additional information.</p>
-            </Card>
-
-            <Card>
-              <p>This is a card without a title, showing the flexible nature of the component.</p>
-            </Card>
-          </div>
-        </section>
-
-        <section className="demo-section">
-          <h2>Form Components</h2>
-          <Card title="Sample Form">
-            <TextInput
-              label="Full Name"
-              value={formData.name}
-              onChange={handleInputChange('name')}
-              placeholder="Enter your name"
-              required
-            />
-
-            <TextInput
-              label="Email Address"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange('email')}
-              placeholder="your.email@example.com"
-              required
-            />
-
-            <Select
-              label="Country"
-              value={formData.country}
-              onChange={handleInputChange('country')}
-              options={countryOptions}
-              required
-            />
-
-            <TextArea
-              label="Message"
-              value={formData.message}
-              onChange={handleInputChange('message')}
-              placeholder="Enter your message here..."
-              rows={5}
-            />
-
-            <Checkbox
-              label="Subscribe to newsletter"
-              checked={formData.newsletter}
-              onChange={handleInputChange('newsletter')}
-            />
-
-            <button className="demo-button primary">Submit Form</button>
-          </Card>
-        </section>
-
-        <section className="demo-section">
-          <h2>Footnote Component</h2>
-          <Card title="Footnote Variants">
-            <p>The footnote component can be used as a full-width footer or as a contained card.</p>
-            
-            <h4>Card Variant Example:</h4>
-            <Footnote 
-              variant="card"
-              content={
-                <div>
-                  <h4>Card Footnote</h4>
-                  <p>This is a footnote displayed as a card component.</p>
-                </div>
-              }
-              socialLinks={socialLinks.slice(0, 2)}
-              pageLinks={pageLinks.slice(0, 3)}
-            />
-            
-            <p><strong>Footer Variant:</strong> The full-width footer is displayed at the bottom of the page.</p>
-          </Card>
-        </section>
-
-        <section className="demo-section">
-          <h2>Usage</h2>
-          <Card title="How to Use">
-            <p>Import components from the acme-ui package:</p>
-            <pre className="code-block">
-{`import { 
-  Navigation, Card, TextInput, Select, Checkbox, TextArea,
-  Footnote, ImageGallery, Hero, Forum 
-} from 'acme-ui';
-
-// Use the Navigation component
-<Navigation 
-  companyName="Your Company" 
-  links={[
-    { label: 'Home', href: '/home' },
-    { label: 'About', href: '/about' }
-  ]} 
-/>
-
-// Use Hero component
-<Hero 
-  backgroundImage="/hero-bg.jpg"
-  title="Welcome"
-  subtitle="Your amazing website"
-  variant="scroll-responsive"
-/>
-
-// Use Image Gallery
-<ImageGallery 
-  images={galleryImages}
-  columns={3}
-  showLightbox={true}
-/>
-
-// Use Forum component
-<Forum 
-  user={userObj}
-  message="Hello world!"
-  onReact={handleReact}
-  onReply={handleReply}
-/>`}
-            </pre>
-          </Card>
-        </section>
-        </div>
-      </div>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/static-hero" element={<StaticHeroPage />} />
+          <Route path="/sticky-hero" element={<StickyHeroPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/forms" element={<FormsPage />} />
+          <Route path="/ui-components" element={<UIComponentsPage />} />
+        </Routes>
+      </main>
       
-      {/* Footer - Full width at bottom */}
       <Footnote 
         variant="footer"
         content={
-          <div>
-            <h3>Acme UI Components</h3>
-            <p>Built with React for modern web applications. Open source and customizable.</p>
+          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            <h3 style={{ 
+              margin: '0 0 1rem 0', 
+              fontSize: '1.5rem',
+              color: 'inherit' // Use footnote's inherited color
+            }}>
+              Acme UI Components
+            </h3>
+            <p style={{ 
+              margin: '0 0 1.5rem 0', 
+              fontSize: '1rem', 
+              color: isDarkMode ? '#b0b0b0' : '#bdc3c7', // Original secondary text colors
+              lineHeight: '1.6'
+            }}>
+              Built with React for modern web applications. Open source and customizable.
+            </p>
+            <button 
+              onClick={toggleTheme}
+              style={{
+                // Original theme colors for dark mode toggle
+                background: isDarkMode ? '#64b5f6' : '#3498db',
+                color: '#ffffff',
+                border: isDarkMode ? '1px solid rgba(100, 181, 246, 0.3)' : '1px solid rgba(52, 152, 219, 0.3)',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '6px',
+                fontSize: '0.9rem',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                margin: '0 auto',
+                boxShadow: 'none'
+              }}
+              onMouseOver={(e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                e.target.style.backgroundColor = isDarkMode ? 'rgba(100, 181, 246, 0.9)' : 'rgba(52, 152, 219, 0.9)';
+              }}
+              onMouseOut={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = 'none';
+                e.target.style.backgroundColor = isDarkMode ? '#64b5f6' : '#3498db';
+              }}
+            >
+              <span>{isDarkMode ? '☀️' : '🌙'}</span>
+              Switch to {isDarkMode ? 'Light' : 'Dark'} Mode
+            </button>
           </div>
         }
-        socialLinks={socialLinks}
-        pageLinks={pageLinks}
+        socialLinks={[
+          { label: 'GitHub', href: 'https://github.com/example/acme-ui' },
+          { label: 'Twitter', href: 'https://twitter.com/acme-ui' },
+          { label: 'LinkedIn', href: 'https://linkedin.com/company/acme-ui' }
+        ]}
+        pageLinks={[
+          { label: 'Documentation', href: '/docs' },
+          { label: 'Support', href: '/support' },
+          { label: 'Privacy Policy', href: '/privacy' },
+          { label: 'Terms of Service', href: '/terms' }
+        ]}
       />
-    </>
+    </div>
   );
-};
+}
 
+function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+
+// Bootstrap the application
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<Demo />);
+root.render(<App />);

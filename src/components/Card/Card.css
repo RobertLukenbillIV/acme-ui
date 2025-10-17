@@ -3,7 +3,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .acme-card:hover {
@@ -14,6 +14,7 @@
   padding: 20px;
   border-bottom: 1px solid #eee;
   background-color: #f8f9fa;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .acme-card-title {
@@ -21,14 +22,44 @@
   font-size: 20px;
   font-weight: 600;
   color: #2c3e50;
+  transition: color 0.3s ease;
 }
 
 .acme-card-body {
   padding: 20px;
+  transition: color 0.3s ease;
 }
 
 .acme-card-footer {
   padding: 15px 20px;
   border-top: 1px solid #eee;
   background-color: #f8f9fa;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-card {
+  background: #161b22;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  color: #e6edf3;
+  border: 1px solid #30363d;
+}
+
+[data-theme="dark"] .acme-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  border-color: #484f58;
+}
+
+[data-theme="dark"] .acme-card-header {
+  background-color: #21262d;
+  border-bottom-color: #30363d;
+}
+
+[data-theme="dark"] .acme-card-title {
+  color: #f0f6fc;
+}
+
+[data-theme="dark"] .acme-card-footer {
+  background-color: #21262d;
+  border-top-color: #30363d;
 }

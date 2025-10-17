@@ -24,9 +24,37 @@
   margin-right: auto;
 }
 
+/* GitHub Dark Mode styles */
+[data-theme="dark"] .acme-footnote {
+  background-color: #161b22;
+  color: #e6edf3;
+  border-top: 1px solid #30363d;
+}
+
+[data-theme="dark"] .social-link {
+  color: #58a6ff;
+  background-color: rgba(88, 166, 255, 0.1);
+  border-color: rgba(88, 166, 255, 0.2);
+}
+
+[data-theme="dark"] .social-link:hover {
+  background-color: rgba(88, 166, 255, 0.2);
+}
+
+[data-theme="dark"] .page-link {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .page-link:hover {
+  color: #f0f6fc;
+  background-color: rgba(139, 148, 158, 0.1);
+  border-color: rgba(139, 148, 158, 0.3);
+}
+
 .footnote-content {
   margin-bottom: 2rem;
   line-height: 1.6;
+  text-align: center;
 }
 
 .footnote-links-container {
