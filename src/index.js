@@ -14,6 +14,10 @@ export { default as Tooltip } from './components/Tooltip';
 
 // Form Components
 export { TextInput, Select, Checkbox, TextArea } from './components/Form';
+export { default as SearchField } from './components/SearchField';
+export { default as InputGroup, InputGroupAddon, InputGroupIcon } from './components/InputGroup';
+export { default as DatePicker } from './components/DatePicker';
+export { default as FileUploader } from './components/FileUploader';
 
 // Layout Components
 export { default as Hero } from './components/Hero';
