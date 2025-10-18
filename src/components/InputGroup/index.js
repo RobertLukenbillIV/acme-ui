@@ -1,0 +1,1 @@
+export { default, InputGroupAddon, InputGroupIcon } from './InputGroup';

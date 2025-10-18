@@ -14,6 +14,7 @@ import StickyHeroPage from './pages/StickyHeroPage.jsx';
 import GalleryPage from './pages/GalleryPage.jsx';
 import ForumPage from './pages/ForumPage.jsx';
 import FormsPage from './pages/FormsPage.jsx';
+import AdvancedFormsPage from './pages/AdvancedFormsPage.jsx';
 import UIComponentsPage from './pages/UIComponentsPage.jsx';
 import PrimitivesPage from './pages/PrimitivesPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
@@ -214,6 +215,7 @@ function AppContent() {
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/forms" element={<FormsPage />} />
+          <Route path="/advanced-forms" element={<AdvancedFormsPage />} />
           <Route path="/ui-components" element={<UIComponentsPage />} />
         </Routes>
       </main>
