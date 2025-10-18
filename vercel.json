@@ -5,10 +5,15 @@
   "outputDirectory": "demo-dist",
   "installCommand": "npm install",
   "framework": "vite",
-  "routes": [
+  "headers": [
     {
-      "src": "/assets/(.*)",
-      "headers": { "cache-control": "max-age=31536000" }
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "cache-control",
+          "value": "max-age=31536000"
+        }
+      ]
     }
   ],
   "rewrites": [
