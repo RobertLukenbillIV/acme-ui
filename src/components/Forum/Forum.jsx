@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from '../Avatar';
 import './Forum.css';
 
 const Forum = ({ 
@@ -37,26 +38,19 @@ const Forum = ({
     return date.toLocaleDateString();
   };
 
-  const defaultAvatar = (
-    <div className="default-avatar">
-      {name.charAt(0).toUpperCase()}
-    </div>
-  );
-
   return (
     <div className={`acme-forum-message ${className}`}>
       {/* Header with profile and user info */}
       <div className="forum-header">
         <div className="user-profile">
           <div className="avatar-container">
-            {avatar ? (
-              <img 
-                src={avatar} 
-                alt={`${name}'s avatar`} 
-                className="user-avatar"
-              />
-            ) : defaultAvatar}
-            {isOnline && <div className="online-indicator" />}
+            <Avatar
+              src={avatar}
+              name={name}
+              size="medium"
+              status={isOnline ? 'online' : 'offline'}
+              className="user-avatar"
+            />
           </div>
           
           <div className="user-info">

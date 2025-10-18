@@ -1,0 +1,243 @@
+.acme-radio-group {
+  font-family: inherit;
+}
+
+.radio-group-header {
+  margin-bottom: 0.75rem;
+}
+
+.radio-group-label {
+  display: block;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text-primary, #24292f);
+  margin-bottom: 0.25rem;
+}
+
+.required-star {
+  color: #e74c3c;
+  margin-left: 0.25rem;
+}
+
+.radio-group-description {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary, #656d76);
+  line-height: 1.4;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.acme-radio-group.horizontal .radio-options {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.radio-option {
+  position: relative;
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.radio-label:hover {
+  background-color: var(--button-hover-bg, #f6f8fa);
+}
+
+.radio-indicator {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #cbd5e0;
+  border-radius: 50%;
+  background-color: var(--card-background, white);
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.radio-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #3498db;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease;
+}
+
+.radio-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.radio-text {
+  display: block;
+  font-size: 14px;
+  color: var(--text-primary, #24292f);
+  font-weight: 500;
+}
+
+.radio-description {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary, #656d76);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Checked State */
+.radio-option.checked .radio-indicator {
+  border-color: #3498db;
+  background-color: var(--card-background, white);
+}
+
+.radio-option.checked .radio-dot {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Focus State */
+.radio-input:focus + .radio-label .radio-indicator {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.radio-option.disabled,
+.acme-radio-group.disabled .radio-option {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.radio-option.disabled .radio-label,
+.acme-radio-group.disabled .radio-label {
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.acme-radio-group.small .radio-indicator {
+  width: 14px;
+  height: 14px;
+}
+
+.acme-radio-group.small .radio-dot {
+  width: 4px;
+  height: 4px;
+}
+
+.acme-radio-group.small .radio-text {
+  font-size: 13px;
+}
+
+.acme-radio-group.small .radio-description {
+  font-size: 11px;
+}
+
+.acme-radio-group.large .radio-indicator {
+  width: 20px;
+  height: 20px;
+}
+
+.acme-radio-group.large .radio-dot {
+  width: 8px;
+  height: 8px;
+}
+
+.acme-radio-group.large .radio-text {
+  font-size: 16px;
+}
+
+.acme-radio-group.large .radio-description {
+  font-size: 14px;
+}
+
+/* Error State */
+.acme-radio-group.error .radio-indicator {
+  border-color: #e74c3c;
+}
+
+.radio-group-error {
+  margin-top: 0.5rem;
+  font-size: 13px;
+  color: #e74c3c;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .radio-group-label {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .radio-group-description {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .radio-text {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .radio-description {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .radio-label:hover {
+  background-color: var(--button-hover-bg, #21262d);
+}
+
+[data-theme="dark"] .radio-indicator {
+  background-color: var(--card-background, #161b22);
+  border-color: var(--border-color, #30363d);
+}
+
+/* Animation for better UX */
+@media (prefers-reduced-motion: no-preference) {
+  .radio-indicator,
+  .radio-dot {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Card-style radio options */
+.acme-radio-group.card-style .radio-label {
+  border: 1px solid var(--border-color, #d1d9e0);
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: var(--card-background, white);
+}
+
+.acme-radio-group.card-style .radio-option.checked .radio-label {
+  border-color: #3498db;
+  background-color: #f0f9ff;
+}
+
+[data-theme="dark"] .acme-radio-group.card-style .radio-label {
+  border-color: var(--border-color, #30363d);
+  background-color: var(--card-background, #161b22);
+}
+
+[data-theme="dark"] .acme-radio-group.card-style .radio-option.checked .radio-label {
+  border-color: #3498db;
+  background-color: rgba(52, 152, 219, 0.1);
+}
