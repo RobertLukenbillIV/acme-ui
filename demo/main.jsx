@@ -15,6 +15,7 @@ import GalleryPage from './pages/GalleryPage.jsx';
 import ForumPage from './pages/ForumPage.jsx';
 import FormsPage from './pages/FormsPage.jsx';
 import UIComponentsPage from './pages/UIComponentsPage.jsx';
+import PrimitivesPage from './pages/PrimitivesPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -31,6 +32,7 @@ const navigationLinks = [
     label: 'Components', 
     href: '#components',
     children: [
+      { label: 'Primitives', href: '/primitives' },
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Community', href: '/forum' }
@@ -206,6 +208,7 @@ function AppContent() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/primitives" element={<PrimitivesPage />} />
           <Route path="/static-hero" element={<StaticHeroPage />} />
           <Route path="/sticky-hero" element={<StickyHeroPage />} />
           <Route path="/gallery" element={<GalleryPage />} />

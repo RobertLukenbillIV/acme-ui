@@ -39,6 +39,169 @@ Visit `http://localhost:3000` to see all components with interactive examples an
 
 ## 🧩 Components
 
+### 🔧 Primitive Components
+Essential building blocks for creating interactive interfaces.
+
+#### Button
+Versatile button component with multiple variants, sizes, and states.
+
+```jsx
+<Button variant="primary" size="large" onClick={handleClick}>
+  Primary Button
+</Button>
+<Button variant="danger" disabled>
+  Disabled Danger
+</Button>
+```
+
+#### Avatar
+User profile images with fallbacks, status indicators, and multiple variants.
+
+```jsx
+<Avatar 
+  src="/user-photo.jpg" 
+  name="John Doe" 
+  status="online"
+  size="large"
+  variant="circle"
+/>
+```
+
+#### Badge
+Notification and status indicators with numeric support.
+
+```jsx
+<Badge variant="danger">{unreadCount}</Badge>
+<BadgeWrapper badge={<Badge dot variant="success" />}>
+  <Avatar name="User" />
+</BadgeWrapper>
+```
+
+#### Switch
+Modern toggle switches for boolean inputs.
+
+```jsx
+<Switch
+  checked={enabled}
+  onChange={(e) => setEnabled(e.target.checked)}
+  label="Enable notifications"
+  description="Receive real-time updates"
+/>
+```
+
+#### RadioGroup
+Single-selection input groups with rich options.
+
+```jsx
+<RadioGroup
+  label="Choose size"
+  value={size}
+  onChange={(e) => setSize(e.target.value)}
+  options={[
+    { value: 'small', label: 'Small', description: 'Compact size' },
+    { value: 'medium', label: 'Medium', description: 'Standard size' },
+    { value: 'large', label: 'Large', description: 'Spacious size' }
+  ]}
+/>
+```
+
+#### Spinner
+Loading indicators with multiple variants and sizes.
+
+```jsx
+<Spinner variant="circular" size="large" color="primary" />
+<LoadingWrapper loading={isLoading}>
+  <YourContent />
+</LoadingWrapper>
+```
+
+## 🧩 Components
+
+### 🔧 Primitive Components
+
+#### 🖱️ Button
+Versatile button component with multiple variants and states.
+
+**Features:**
+- 6 variants: default, primary, secondary, danger, success, ghost
+- 3 sizes: small, medium, large
+- Disabled and loading states
+- Icon support and accessibility
+
+```jsx
+<Button variant="primary" size="large" onClick={handleClick}>
+  Click Me
+</Button>
+```
+
+#### 👤 Avatar
+User avatars with fallback initials and status indicators.
+
+```jsx
+<Avatar 
+  src="/user.jpg"
+  name="John Doe"
+  size="large"
+  status="online"
+/>
+```
+
+#### 🏷️ Badge
+Status indicators and notification counters.
+
+```jsx
+<Badge variant="danger">5</Badge>
+<BadgeWrapper badge={<Badge>New</Badge>}>
+  <Button>Messages</Button>
+</BadgeWrapper>
+```
+
+#### 🔄 Switch
+Toggle switches for boolean inputs with smooth animations.
+
+```jsx
+<Switch 
+  checked={enabled}
+  onChange={setEnabled}
+  label="Enable notifications"
+  description="Receive push notifications"
+/>
+```
+
+#### ◉ RadioGroup
+Single-selection input with multiple styling options.
+
+```jsx
+<RadioGroup
+  label="Choose option"
+  value={selected}
+  onChange={setSelected}
+  options={[
+    { value: 'a', label: 'Option A' },
+    { value: 'b', label: 'Option B' }
+  ]}
+/>
+```
+
+#### ⏳ Spinner
+Loading indicators for various states.
+
+```jsx
+<Spinner variant="circular" size="large" />
+<LoadingWrapper loading={isLoading}>
+  <Content />
+</LoadingWrapper>
+```
+
+#### 💬 Tooltip
+Contextual information on hover, focus, or click.
+
+```jsx
+<Tooltip content="Helpful information" position="top">
+  <Button>Hover me</Button>
+</Tooltip>
+```
+
 ### 🧭 Navigation
 Flexible navigation system with multiple positioning options and smooth animations.
 
@@ -911,8 +1074,9 @@ We welcome contributions! Please see our contributing guidelines for details on:
 
 ## 📝 Component Categories
 
-- **📝 Forms** - TextInput, Select, Checkbox, TextArea
-- **🎴 UI Components** - Card, TabbedCard, Buttons
+- **� Primitives** - Button, Avatar, Badge, Switch, RadioGroup, Spinner, Tooltip
+- **�📝 Forms** - TextInput, Select, Checkbox, TextArea
+- **🎴 UI Components** - Card, TabbedCard
 - **🧭 Layout** - Navigation, Hero, ImageGallery, Footnote  
 - **👥 Community** - Forum, Comments, User interactions
 

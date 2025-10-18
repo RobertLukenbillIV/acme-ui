@@ -1,0 +1,224 @@
+.acme-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+  border-radius: 12px;
+  padding: 4px 8px;
+  min-width: 20px;
+  background-color: #e74c3c;
+  color: white;
+  font-family: inherit;
+}
+
+/* Badge Variants */
+.acme-badge.default {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.acme-badge.primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.acme-badge.success {
+  background-color: #27ae60;
+  color: white;
+}
+
+.acme-badge.warning {
+  background-color: #f39c12;
+  color: white;
+}
+
+.acme-badge.danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.acme-badge.info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.acme-badge.light {
+  background-color: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+.acme-badge.dark {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Badge Sizes */
+.acme-badge.small {
+  font-size: 9px;
+  padding: 2px 6px;
+  min-width: 16px;
+  border-radius: 10px;
+}
+
+.acme-badge.medium {
+  font-size: 11px;
+  padding: 4px 8px;
+  min-width: 20px;
+  border-radius: 12px;
+}
+
+.acme-badge.large {
+  font-size: 13px;
+  padding: 6px 12px;
+  min-width: 24px;
+  border-radius: 14px;
+}
+
+/* Dot Badge */
+.acme-badge.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  padding: 0;
+  min-width: auto;
+}
+
+.acme-badge.dot.small {
+  width: 6px;
+  height: 6px;
+}
+
+.acme-badge.dot.large {
+  width: 10px;
+  height: 10px;
+}
+
+/* Custom Colors */
+.acme-badge.color-red { background-color: #e74c3c; }
+.acme-badge.color-green { background-color: #27ae60; }
+.acme-badge.color-blue { background-color: #3498db; }
+.acme-badge.color-yellow { background-color: #f1c40f; color: #333; }
+.acme-badge.color-orange { background-color: #e67e22; }
+.acme-badge.color-purple { background-color: #9b59b6; }
+.acme-badge.color-pink { background-color: #e91e63; }
+.acme-badge.color-teal { background-color: #1abc9c; }
+.acme-badge.color-indigo { background-color: #6f42c1; }
+.acme-badge.color-cyan { background-color: #17a2b8; }
+
+/* Badge Wrapper for positioning */
+.acme-badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge-container {
+  position: absolute;
+  z-index: 10;
+}
+
+/* Badge Positions */
+.acme-badge-wrapper.top-right .badge-container {
+  top: -8px;
+  right: -8px;
+}
+
+.acme-badge-wrapper.top-left .badge-container {
+  top: -8px;
+  left: -8px;
+}
+
+.acme-badge-wrapper.bottom-right .badge-container {
+  bottom: -8px;
+  right: -8px;
+}
+
+.acme-badge-wrapper.bottom-left .badge-container {
+  bottom: -8px;
+  left: -8px;
+}
+
+.acme-badge-wrapper.center-right .badge-container {
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+}
+
+.acme-badge-wrapper.center-left .badge-container {
+  top: 50%;
+  left: -8px;
+  transform: translateY(-50%);
+}
+
+/* Badge animations */
+@keyframes badge-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.acme-badge.pulse {
+  animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .acme-badge.light {
+  background-color: #495057;
+  color: #f8f9fa;
+  border-color: #6c757d;
+}
+
+[data-theme="dark"] .acme-badge.default {
+  background-color: #6c757d;
+}
+
+/* Outline variants */
+.acme-badge.outline {
+  background-color: transparent;
+  border: 1px solid currentColor;
+}
+
+.acme-badge.outline.primary {
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.acme-badge.outline.success {
+  color: #27ae60;
+  border-color: #27ae60;
+}
+
+.acme-badge.outline.warning {
+  color: #f39c12;
+  border-color: #f39c12;
+}
+
+.acme-badge.outline.danger {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+/* Removable badges */
+.acme-badge.removable {
+  padding-right: 20px;
+  position: relative;
+}
+
+.acme-badge.removable::after {
+  content: '×';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.acme-badge.removable::after:hover {
+  opacity: 1;
+}
