@@ -45,3 +45,10 @@ export { default as Footnote } from './components/Footnote';
 // Interactive Components
 export { default as Forum } from './components/Forum';
 export { default as ImageGallery } from './components/ImageGallery';
+
+// Authentication & Utility Components
+export { default as AuthForm } from './components/AuthForm';
+export { default as UserAvatarMenu } from './components/UserAvatarMenu';
+export { default as ThemeToggle } from './components/ThemeToggle';
+export { default as ErrorBoundary } from './components/ErrorBoundary';
+export { default as LoadingScreen } from './components/LoadingScreen';

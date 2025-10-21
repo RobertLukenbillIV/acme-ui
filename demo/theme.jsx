@@ -9,7 +9,19 @@ export const ThemeProvider = ({ children }) => {
     // Check for saved preference or default to light mode
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode) {
-      setIsDarkMode(JSON.parse(savedMode));
+      try {
+        // Try to parse as JSON first (for boolean values)
+        const parsed = JSON.parse(savedMode);
+        if (typeof parsed === 'boolean') {
+          setIsDarkMode(parsed);
+        } else {
+          // Handle string values like "dark" or "light"
+          setIsDarkMode(savedMode === 'dark');
+        }
+      } catch (error) {
+        // Handle string values or invalid JSON
+        setIsDarkMode(savedMode === 'dark' || savedMode === 'true');
+      }
     }
   }, []);
 

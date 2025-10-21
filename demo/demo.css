@@ -202,3 +202,91 @@ body {
   font-size: 13px;
   line-height: 1.6;
 }
+
+/* Page Layout Classes for Demo Pages */
+.page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px); /* Ensure minimum height with space for footer */
+}
+
+.container {
+  width: 100%;
+}
+
+.container h1 {
+  margin-bottom: 2rem;
+  color: var(--text-primary, #2c3e50);
+}
+
+.container > p {
+  margin-bottom: 2rem;
+  color: var(--text-secondary, #7f8c8d);
+  line-height: 1.6;
+}
+
+/* Component Demo Grid Styles */
+.component-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.demo-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-item h4 {
+  margin: 0 0 1rem 0;
+  color: var(--text-primary, #2c3e50);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Loading Demo Container Styles */
+.loading-demo-container {
+  height: 150px;
+  position: relative;
+  padding: 1rem;
+  border: 1px solid var(--acme-color-border-primary);
+  border-radius: 8px;
+  background-color: var(--acme-color-background-elevated);
+  transition: all 0.3s ease;
+  overflow: hidden; /* Prevent content from protruding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Override LoadingScreen inline padding for demo */
+.loading-demo-container .acme-loading-screen-inline {
+  padding: 0.5rem;
+  min-height: auto;
+  height: 100%;
+  width: 100%;
+}
+
+/* Dark theme support for page layout */
+[data-theme="dark"] .page {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .container h1 {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .container > p {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .demo-item h4 {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .loading-demo-container {
+  background-color: var(--acme-color-background-elevated);
+  border-color: var(--acme-color-border-primary);
+}

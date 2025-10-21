@@ -47,6 +47,11 @@
   --acme-radius-4xl: 1.5rem;     /* 24px */
   --acme-radius-full: 9999px;
 
+  /* Border Radius Aliases */
+  --acme-border-radius-sm: var(--acme-radius-sm);
+  --acme-border-radius-md: var(--acme-radius-md);
+  --acme-border-radius-lg: var(--acme-radius-lg);
+
   /* Box Shadows */
   --acme-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --acme-shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
@@ -72,7 +77,7 @@
   --acme-z-hide: -1;
   --acme-z-base: 0;
   --acme-z-docked: 10;
-  --acme-z-dropdown: 1000;
+  --acme-z-dropdown: 1500;
   --acme-z-sticky: 1100;
   --acme-z-banner: 1200;
   --acme-z-overlay: 1300;
@@ -81,6 +86,14 @@
   --acme-z-skiplink: 1600;
   --acme-z-toast: 1700;
   --acme-z-tooltip: 1800;
+
+  /* Z-Index Aliases */
+  --acme-z-index-dropdown: var(--acme-z-dropdown);
+  --acme-z-index-modal: var(--acme-z-modal);
+  --acme-z-index-popover: var(--acme-z-popover);
+
+  /* Additional Shadow Aliases if needed */
+  --acme-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
   /* Typography Spacing */
   --acme-leading-none: 1;
