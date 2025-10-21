@@ -1,0 +1,299 @@
+/* Code Component Styles */
+@import '../../tokens/index.css';
+
+/* Inline Code */
+.acme-code-inline {
+  font-family: var(--acme-font-mono);
+  font-size: var(--acme-code-size);
+  font-weight: var(--acme-code-weight);
+  line-height: var(--acme-code-line-height);
+  letter-spacing: var(--acme-code-letter-spacing);
+  padding: var(--acme-space-1) var(--acme-space-2);
+  border-radius: var(--acme-radius-sm);
+  border: 1px solid var(--acme-color-border-primary);
+}
+
+.acme-code-variant-default {
+  background-color: var(--acme-color-surface-secondary);
+  color: var(--acme-color-text-primary);
+}
+
+.acme-code-variant-subtle {
+  background-color: var(--acme-color-surface-tertiary);
+  color: var(--acme-color-text-secondary);
+  border: none;
+}
+
+.acme-code-variant-accent {
+  background-color: var(--acme-color-primary-50);
+  color: var(--acme-color-primary-700);
+  border-color: var(--acme-color-primary-200);
+}
+
+[data-theme="dark"] .acme-code-variant-accent {
+  background-color: var(--acme-color-primary-950);
+  color: var(--acme-color-primary-300);
+  border-color: var(--acme-color-primary-800);
+}
+
+/* Code Block Container */
+.acme-code-container {
+  margin: var(--acme-space-4) 0;
+  border-radius: var(--acme-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--acme-color-border-primary);
+}
+
+.acme-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--acme-space-3) var(--acme-space-4);
+  background-color: var(--acme-color-surface-secondary);
+  border-bottom: 1px solid var(--acme-color-border-primary);
+  font-family: var(--acme-font-sans);
+}
+
+.acme-code-title {
+  font-weight: var(--acme-font-medium);
+  color: var(--acme-color-text-primary);
+  font-size: var(--acme-text-sm);
+}
+
+.acme-code-language-label {
+  font-size: var(--acme-text-xs);
+  color: var(--acme-color-text-secondary);
+  background-color: var(--acme-color-surface-tertiary);
+  padding: var(--acme-space-1) var(--acme-space-2);
+  border-radius: var(--acme-radius-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--acme-tracking-wide);
+  font-weight: var(--acme-font-medium);
+}
+
+/* Code Block */
+.acme-code-block {
+  position: relative;
+  background-color: var(--acme-color-surface-primary);
+}
+
+.acme-code-pre {
+  margin: 0;
+  padding: var(--acme-space-4);
+  overflow-x: auto;
+  font-family: var(--acme-font-mono);
+  font-size: var(--acme-code-size);
+  line-height: var(--acme-leading-relaxed);
+  letter-spacing: var(--acme-code-letter-spacing);
+}
+
+.acme-code-content {
+  color: var(--acme-color-text-primary);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Line Numbers and Highlighting */
+.acme-code-with-line-numbers .acme-code-pre {
+  padding-left: 0;
+}
+
+.acme-code-line {
+  display: flex;
+  padding: 0 var(--acme-space-4);
+  min-height: 1.5em;
+  align-items: center;
+}
+
+.acme-code-line.highlighted {
+  background-color: var(--acme-color-warning-50);
+}
+
+[data-theme="dark"] .acme-code-line.highlighted {
+  background-color: var(--acme-color-warning-950);
+}
+
+.acme-code-line-number {
+  display: inline-block;
+  width: var(--acme-space-8);
+  text-align: right;
+  color: var(--acme-color-text-tertiary);
+  user-select: none;
+  margin-right: var(--acme-space-3);
+  flex-shrink: 0;
+  font-size: var(--acme-text-xs);
+}
+
+.acme-code-line-content {
+  flex: 1;
+}
+
+/* Copy Button */
+.acme-code-copy-button {
+  position: absolute;
+  top: var(--acme-space-3);
+  right: var(--acme-space-3);
+  background: var(--acme-color-surface-secondary);
+  border: 1px solid var(--acme-color-border-primary);
+  border-radius: var(--acme-radius-sm);
+  padding: var(--acme-space-2);
+  cursor: pointer;
+  color: var(--acme-color-text-secondary);
+  transition: var(--acme-transition-fast);
+  transition-property: color, background-color, border-color;
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+.acme-code-container:hover .acme-code-copy-button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.acme-code-copy-button:hover {
+  background: var(--acme-color-surface-hover);
+  color: var(--acme-color-text-primary);
+  border-color: var(--acme-color-border-secondary);
+}
+
+.acme-code-copy-button:focus-visible {
+  outline: none;
+  box-shadow: var(--acme-shadow-focus);
+  opacity: 1;
+}
+
+/* Code Themes */
+.acme-code-theme-dark {
+  background-color: var(--acme-color-gray-900);
+  color: var(--acme-color-gray-100);
+}
+
+.acme-code-theme-dark .acme-code-pre {
+  background-color: var(--acme-color-gray-900);
+}
+
+.acme-code-theme-dark .acme-code-content {
+  color: var(--acme-color-gray-100);
+}
+
+.acme-code-theme-dark .acme-code-line-number {
+  color: var(--acme-color-gray-500);
+}
+
+.acme-code-theme-minimal {
+  background-color: var(--acme-color-gray-50);
+  border: none;
+}
+
+.acme-code-theme-minimal .acme-code-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--acme-color-border-primary);
+}
+
+[data-theme="dark"] .acme-code-theme-minimal {
+  background-color: var(--acme-color-gray-800);
+}
+
+/* Keyboard Shortcut Styles */
+.acme-keyboard-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--acme-space-1);
+  font-family: var(--acme-font-sans);
+}
+
+.acme-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 var(--acme-space-2);
+  background: var(--acme-color-surface-secondary);
+  border: 1px solid var(--acme-color-border-primary);
+  border-bottom-width: 2px;
+  border-radius: var(--acme-radius-sm);
+  font-family: var(--acme-font-mono);
+  font-size: var(--acme-text-xs);
+  font-weight: var(--acme-font-medium);
+  color: var(--acme-color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: var(--acme-tracking-wide);
+  box-shadow: 0 1px 0 var(--acme-color-border-secondary);
+}
+
+.acme-key-separator {
+  color: var(--acme-color-text-tertiary);
+  font-size: var(--acme-text-xs);
+  margin: 0 var(--acme-space-1);
+}
+
+/* Syntax Highlighting Support */
+/* Add syntax highlighting classes here if using a syntax highlighter like Prism.js or highlight.js */
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .acme-code-pre {
+    padding: var(--acme-space-3);
+    font-size: var(--acme-text-xs);
+  }
+  
+  .acme-code-header {
+    padding: var(--acme-space-2) var(--acme-space-3);
+  }
+  
+  .acme-code-copy-button {
+    position: static;
+    opacity: 1;
+    transform: none;
+    margin-top: var(--acme-space-2);
+  }
+  
+  .acme-code-language-label {
+    display: none;
+  }
+  
+  .acme-code-line-number {
+    width: var(--acme-space-6);
+    margin-right: var(--acme-space-2);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .acme-code-inline,
+  .acme-code-block {
+    border-width: 2px;
+  }
+  
+  .acme-key {
+    border-width: 2px;
+    border-bottom-width: 3px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .acme-code-copy-button {
+    transition: none;
+  }
+}
+
+/* Custom Scrollbar for Code Blocks */
+.acme-code-pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.acme-code-pre::-webkit-scrollbar-track {
+  background: var(--acme-color-surface-secondary);
+}
+
+.acme-code-pre::-webkit-scrollbar-thumb {
+  background: var(--acme-color-border-secondary);
+  border-radius: var(--acme-radius-sm);
+}
+
+.acme-code-pre::-webkit-scrollbar-thumb:hover {
+  background: var(--acme-color-text-tertiary);
+}

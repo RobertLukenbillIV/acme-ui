@@ -1,0 +1,285 @@
+/* Lists Component Styles */
+@import '../../tokens/index.css';
+
+/* Base List Styles */
+.acme-list {
+  font-family: var(--acme-font-sans);
+  margin: 0;
+  padding: 0;
+  color: var(--acme-color-text-primary);
+}
+
+.acme-list-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--acme-space-2);
+}
+
+.acme-list-content {
+  flex: 1;
+  line-height: var(--acme-leading-relaxed);
+}
+
+/* Spacing Variants */
+.acme-list-spacing-compact .acme-list-item {
+  margin-bottom: var(--acme-space-1);
+}
+
+.acme-list-spacing-normal .acme-list-item {
+  margin-bottom: var(--acme-space-2);
+}
+
+.acme-list-spacing-relaxed .acme-list-item {
+  margin-bottom: var(--acme-space-3);
+}
+
+/* Unordered List Styles */
+.acme-list-unordered {
+  list-style: none;
+  padding-left: var(--acme-space-6);
+}
+
+/* Bullet Markers */
+.acme-list-marker-bullet .acme-list-item::before {
+  content: '•';
+  color: var(--acme-color-text-secondary);
+  font-weight: var(--acme-font-bold);
+  position: absolute;
+  left: calc(-1 * var(--acme-space-6));
+  top: 0;
+  line-height: inherit;
+}
+
+.acme-list-marker-dash .acme-list-item::before {
+  content: '–';
+  color: var(--acme-color-text-secondary);
+  position: absolute;
+  left: calc(-1 * var(--acme-space-6));
+  top: 0;
+  line-height: inherit;
+}
+
+.acme-list-marker-arrow .acme-list-item::before {
+  content: '→';
+  color: var(--acme-color-primary-600);
+  position: absolute;
+  left: calc(-1 * var(--acme-space-6));
+  top: 0;
+  line-height: inherit;
+}
+
+[data-theme="dark"] .acme-list-marker-arrow .acme-list-item::before {
+  color: var(--acme-color-primary-400);
+}
+
+.acme-list-marker-check .acme-list-item::before {
+  content: '✓';
+  color: var(--acme-color-success-600);
+  font-weight: var(--acme-font-bold);
+  position: absolute;
+  left: calc(-1 * var(--acme-space-6));
+  top: 0;
+  line-height: inherit;
+}
+
+[data-theme="dark"] .acme-list-marker-check .acme-list-item::before {
+  color: var(--acme-color-success-400);
+}
+
+/* Custom Icon Support */
+.acme-list-item-with-icon {
+  padding-left: 0;
+}
+
+.acme-list-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--acme-space-5);
+  height: var(--acme-space-5);
+  margin-right: var(--acme-space-2);
+  flex-shrink: 0;
+  color: var(--acme-color-text-secondary);
+}
+
+/* Ordered List Styles */
+.acme-list-ordered {
+  counter-reset: list-counter;
+  padding-left: var(--acme-space-8);
+}
+
+.acme-list-ordered .acme-list-item {
+  counter-increment: list-counter;
+}
+
+.acme-list-ordered .acme-list-item::before {
+  content: counter(list-counter) '.';
+  color: var(--acme-color-text-secondary);
+  font-weight: var(--acme-font-semibold);
+  position: absolute;
+  left: calc(-1 * var(--acme-space-8));
+  top: 0;
+  line-height: inherit;
+  min-width: var(--acme-space-6);
+  text-align: right;
+}
+
+/* Ordered List Types */
+.acme-list-type-decimal .acme-list-item::before {
+  content: counter(list-counter) '.';
+}
+
+.acme-list-type-decimal-zero .acme-list-item::before {
+  content: counter(list-counter, decimal-leading-zero) '.';
+}
+
+.acme-list-type-lower-alpha .acme-list-item::before {
+  content: counter(list-counter, lower-alpha) '.';
+}
+
+.acme-list-type-upper-alpha .acme-list-item::before {
+  content: counter(list-counter, upper-alpha) '.';
+}
+
+.acme-list-type-lower-roman .acme-list-item::before {
+  content: counter(list-counter, lower-roman) '.';
+}
+
+.acme-list-type-upper-roman .acme-list-item::before {
+  content: counter(list-counter, upper-roman) '.';
+}
+
+/* Nested Lists */
+.acme-list .acme-list {
+  margin-top: var(--acme-space-2);
+  margin-bottom: 0;
+}
+
+.acme-list-unordered .acme-list-unordered {
+  padding-left: var(--acme-space-5);
+}
+
+.acme-list-ordered .acme-list-ordered {
+  padding-left: var(--acme-space-6);
+}
+
+/* Nested markers change style */
+.acme-list-unordered .acme-list-unordered .acme-list-item::before {
+  content: '◦';
+}
+
+.acme-list-unordered .acme-list-unordered .acme-list-unordered .acme-list-item::before {
+  content: '▪';
+}
+
+/* List Variants */
+.acme-list-variant-flush {
+  padding-left: 0;
+}
+
+.acme-list-variant-flush .acme-list-item::before {
+  display: none;
+}
+
+.acme-list-variant-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--acme-space-3);
+  padding-left: 0;
+}
+
+.acme-list-variant-inline .acme-list-item {
+  margin-bottom: 0;
+}
+
+.acme-list-variant-inline .acme-list-item::before {
+  display: none;
+}
+
+.acme-list-variant-inline .acme-list-item:not(:last-child)::after {
+  content: '•';
+  color: var(--acme-color-text-tertiary);
+  margin-left: var(--acme-space-3);
+}
+
+/* Description Lists */
+.acme-description-list {
+  font-family: var(--acme-font-sans);
+  margin: 0;
+  color: var(--acme-color-text-primary);
+}
+
+.acme-description-term {
+  font-weight: var(--acme-font-semibold);
+  color: var(--acme-color-text-primary);
+  margin-bottom: var(--acme-space-1);
+  line-height: var(--acme-leading-normal);
+}
+
+.acme-description-detail {
+  color: var(--acme-color-text-secondary);
+  margin-bottom: var(--acme-space-3);
+  margin-left: 0;
+  line-height: var(--acme-leading-relaxed);
+}
+
+/* Description List Layouts */
+.acme-description-list-layout-horizontal {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--acme-space-2) var(--acme-space-4);
+  align-items: baseline;
+}
+
+.acme-description-list-layout-horizontal .acme-description-term {
+  margin-bottom: 0;
+}
+
+.acme-description-list-layout-horizontal .acme-description-detail {
+  margin-bottom: 0;
+}
+
+/* Description List Variants */
+.acme-description-list-variant-bordered .acme-description-term {
+  padding-bottom: var(--acme-space-2);
+  border-bottom: 1px solid var(--acme-color-border-primary);
+}
+
+.acme-description-list-variant-card {
+  background: var(--acme-color-surface-secondary);
+  border: 1px solid var(--acme-color-border-primary);
+  border-radius: var(--acme-radius-lg);
+  padding: var(--acme-space-4);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .acme-list-unordered {
+    padding-left: var(--acme-space-5);
+  }
+  
+  .acme-list-ordered {
+    padding-left: var(--acme-space-6);
+  }
+  
+  .acme-description-list-layout-horizontal {
+    grid-template-columns: 1fr;
+    gap: var(--acme-space-1);
+  }
+  
+  .acme-description-list-layout-horizontal .acme-description-detail {
+    margin-bottom: var(--acme-space-3);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .acme-list-item::before {
+    font-weight: var(--acme-font-bold);
+  }
+  
+  .acme-description-list-variant-bordered .acme-description-term {
+    border-bottom-width: 2px;
+  }
+}

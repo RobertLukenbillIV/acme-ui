@@ -1,0 +1,169 @@
+/**
+ * Acme UI Color Tokens
+ * 
+ * CSS custom properties for consistent color usage across components.
+ * Supports light and dark themes with semantic color naming.
+ */
+
+:root {
+  /* Primary Brand Colors */
+  --acme-color-primary-50: #eff6ff;
+  --acme-color-primary-100: #dbeafe;
+  --acme-color-primary-200: #bfdbfe;
+  --acme-color-primary-300: #93c5fd;
+  --acme-color-primary-400: #60a5fa;
+  --acme-color-primary-500: #3b82f6;
+  --acme-color-primary-600: #2563eb;
+  --acme-color-primary-700: #1d4ed8;
+  --acme-color-primary-800: #1e40af;
+  --acme-color-primary-900: #1e3a8a;
+  --acme-color-primary-950: #172554;
+
+  /* Neutral/Gray Colors */
+  --acme-color-gray-50: #f9fafb;
+  --acme-color-gray-100: #f3f4f6;
+  --acme-color-gray-200: #e5e7eb;
+  --acme-color-gray-300: #d1d5db;
+  --acme-color-gray-400: #9ca3af;
+  --acme-color-gray-500: #6b7280;
+  --acme-color-gray-600: #4b5563;
+  --acme-color-gray-700: #374151;
+  --acme-color-gray-800: #1f2937;
+  --acme-color-gray-900: #111827;
+  --acme-color-gray-950: #030712;
+
+  /* Success Colors */
+  --acme-color-success-50: #f0fdf4;
+  --acme-color-success-100: #dcfce7;
+  --acme-color-success-200: #bbf7d0;
+  --acme-color-success-300: #86efac;
+  --acme-color-success-400: #4ade80;
+  --acme-color-success-500: #22c55e;
+  --acme-color-success-600: #16a34a;
+  --acme-color-success-700: #15803d;
+  --acme-color-success-800: #166534;
+  --acme-color-success-900: #14532d;
+  --acme-color-success-950: #052e16;
+
+  /* Warning Colors */
+  --acme-color-warning-50: #fffbeb;
+  --acme-color-warning-100: #fef3c7;
+  --acme-color-warning-200: #fde68a;
+  --acme-color-warning-300: #fcd34d;
+  --acme-color-warning-400: #fbbf24;
+  --acme-color-warning-500: #f59e0b;
+  --acme-color-warning-600: #d97706;
+  --acme-color-warning-700: #b45309;
+  --acme-color-warning-800: #92400e;
+  --acme-color-warning-900: #78350f;
+  --acme-color-warning-950: #451a03;
+
+  /* Error/Danger Colors */
+  --acme-color-error-50: #fef2f2;
+  --acme-color-error-100: #fee2e2;
+  --acme-color-error-200: #fecaca;
+  --acme-color-error-300: #fca5a5;
+  --acme-color-error-400: #f87171;
+  --acme-color-error-500: #ef4444;
+  --acme-color-error-600: #dc2626;
+  --acme-color-error-700: #b91c1c;
+  --acme-color-error-800: #991b1b;
+  --acme-color-error-900: #7f1d1d;
+  --acme-color-error-950: #450a0a;
+
+  /* Info Colors */
+  --acme-color-info-50: #f0f9ff;
+  --acme-color-info-100: #e0f2fe;
+  --acme-color-info-200: #bae6fd;
+  --acme-color-info-300: #7dd3fc;
+  --acme-color-info-400: #38bdf8;
+  --acme-color-info-500: #0ea5e9;
+  --acme-color-info-600: #0284c7;
+  --acme-color-info-700: #0369a1;
+  --acme-color-info-800: #075985;
+  --acme-color-info-900: #0c4a6e;
+  --acme-color-info-950: #082f49;
+
+  /* Semantic Color Mappings - Light Theme */
+  --acme-color-text-primary: var(--acme-color-gray-900);
+  --acme-color-text-secondary: var(--acme-color-gray-600);
+  --acme-color-text-tertiary: var(--acme-color-gray-500);
+  --acme-color-text-disabled: var(--acme-color-gray-400);
+  --acme-color-text-inverse: var(--acme-color-gray-50);
+  --acme-color-text-link: var(--acme-color-primary-600);
+  --acme-color-text-link-hover: var(--acme-color-primary-700);
+  --acme-color-text-success: var(--acme-color-success-700);
+  --acme-color-text-warning: var(--acme-color-warning-700);
+  --acme-color-text-error: var(--acme-color-error-700);
+
+  --acme-color-background-primary: var(--acme-color-gray-50);
+  --acme-color-background-secondary: var(--acme-color-gray-100);
+  --acme-color-background-tertiary: var(--acme-color-gray-200);
+  --acme-color-background-elevated: #ffffff;
+  --acme-color-background-inverse: var(--acme-color-gray-900);
+  --acme-color-background-overlay: rgba(0, 0, 0, 0.5);
+
+  --acme-color-border-primary: var(--acme-color-gray-200);
+  --acme-color-border-secondary: var(--acme-color-gray-300);
+  --acme-color-border-focus: var(--acme-color-primary-500);
+  --acme-color-border-error: var(--acme-color-error-500);
+  --acme-color-border-success: var(--acme-color-success-500);
+
+  --acme-color-surface-primary: #ffffff;
+  --acme-color-surface-secondary: var(--acme-color-gray-50);
+  --acme-color-surface-tertiary: var(--acme-color-gray-100);
+  --acme-color-surface-hover: var(--acme-color-gray-100);
+  --acme-color-surface-active: var(--acme-color-gray-200);
+  --acme-color-surface-disabled: var(--acme-color-gray-100);
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  /* Semantic Color Mappings - Dark Theme */
+  --acme-color-text-primary: var(--acme-color-gray-100);
+  --acme-color-text-secondary: var(--acme-color-gray-400);
+  --acme-color-text-tertiary: var(--acme-color-gray-500);
+  --acme-color-text-disabled: var(--acme-color-gray-600);
+  --acme-color-text-inverse: var(--acme-color-gray-900);
+  --acme-color-text-link: var(--acme-color-primary-400);
+  --acme-color-text-link-hover: var(--acme-color-primary-300);
+  --acme-color-text-success: var(--acme-color-success-400);
+  --acme-color-text-warning: var(--acme-color-warning-400);
+  --acme-color-text-error: var(--acme-color-error-400);
+
+  --acme-color-background-primary: var(--acme-color-gray-900);
+  --acme-color-background-secondary: var(--acme-color-gray-800);
+  --acme-color-background-tertiary: var(--acme-color-gray-700);
+  --acme-color-background-elevated: var(--acme-color-gray-800);
+  --acme-color-background-inverse: var(--acme-color-gray-100);
+  --acme-color-background-overlay: rgba(0, 0, 0, 0.7);
+
+  --acme-color-border-primary: var(--acme-color-gray-700);
+  --acme-color-border-secondary: var(--acme-color-gray-600);
+  --acme-color-border-focus: var(--acme-color-primary-400);
+  --acme-color-border-error: var(--acme-color-error-400);
+  --acme-color-border-success: var(--acme-color-success-400);
+
+  --acme-color-surface-primary: var(--acme-color-gray-800);
+  --acme-color-surface-secondary: var(--acme-color-gray-700);
+  --acme-color-surface-tertiary: var(--acme-color-gray-600);
+  --acme-color-surface-hover: var(--acme-color-gray-700);
+  --acme-color-surface-active: var(--acme-color-gray-600);
+  --acme-color-surface-disabled: var(--acme-color-gray-800);
+}
+
+/* Utility Classes for Common Color Usage */
+.acme-text-primary { color: var(--acme-color-text-primary); }
+.acme-text-secondary { color: var(--acme-color-text-secondary); }
+.acme-text-tertiary { color: var(--acme-color-text-tertiary); }
+.acme-text-success { color: var(--acme-color-text-success); }
+.acme-text-warning { color: var(--acme-color-text-warning); }
+.acme-text-error { color: var(--acme-color-text-error); }
+
+.acme-bg-primary { background-color: var(--acme-color-background-primary); }
+.acme-bg-secondary { background-color: var(--acme-color-background-secondary); }
+.acme-bg-elevated { background-color: var(--acme-color-background-elevated); }
+
+.acme-border-primary { border-color: var(--acme-color-border-primary); }
+.acme-border-secondary { border-color: var(--acme-color-border-secondary); }
+.acme-border-focus { border-color: var(--acme-color-border-focus); }
