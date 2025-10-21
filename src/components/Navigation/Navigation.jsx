@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Navigation.css';
 
 const Navigation = ({ 
@@ -9,11 +9,27 @@ const Navigation = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState({});
+  const navRef = useRef(null);
 
   const toggleNavigation = () => {
     setIsExpanded(!isExpanded);
     setOpenSubmenus({}); // Close all submenus when toggling main nav
   };
+
+  // Close navigation when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target) && isExpanded) {
+        setIsExpanded(false);
+        setOpenSubmenus({});
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isExpanded]);
 
   const toggleSubmenu = (linkKey, e) => {
     e.preventDefault();
@@ -68,31 +84,65 @@ const Navigation = ({
   const navClasses = `acme-navigation ${position} ${variant} ${isExpanded ? 'expanded' : 'collapsed'}`;
 
   return (
-    <nav className={navClasses}>
-      <div className="nav-header">
-        <button 
-          className="nav-toggle" 
+    <nav className={navClasses} ref={navRef}>
+      {/* Make the entire collapsed navbar clickable */}
+      {!isExpanded && (
+        <div 
+          className="nav-collapsed-clickable" 
           onClick={toggleNavigation}
-          aria-label="Toggle navigation"
+          aria-label="Expand navigation"
         >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-        </button>
-        {isExpanded && variant === 'sidebar' && (
-          <span className="company-name">{companyName}</span>
-        )}
-      </div>
-      
-      {isExpanded && (
-        <div className="nav-content">
-          {variant === 'dropdown' && position === 'top' && (
-            <div className="company-header">
-              <span className="company-name">{companyName}</span>
-            </div>
-          )}
-          {renderNavLinks(links)}
+          <div className="nav-header">
+            <button 
+              className="nav-toggle" 
+              aria-label="Toggle navigation"
+            >
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </button>
+          </div>
         </div>
+      )}
+      
+      {/* Expanded state with clickable header */}
+      {isExpanded && (
+        <>
+          <div 
+            className="nav-header nav-header-clickable" 
+            onClick={toggleNavigation}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleNavigation();
+              }
+            }}
+            aria-label="Collapse navigation"
+          >
+            <button 
+              className="nav-toggle" 
+              aria-label="Toggle navigation"
+            >
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </button>
+            {variant === 'sidebar' && (
+              <span className="company-name">{companyName}</span>
+            )}
+          </div>
+          
+          <div className="nav-content">
+            {variant === 'dropdown' && position === 'top' && (
+              <div className="company-header">
+                <span className="company-name">{companyName}</span>
+              </div>
+            )}
+            {renderNavLinks(links)}
+          </div>
+        </>
       )}
     </nav>
   );

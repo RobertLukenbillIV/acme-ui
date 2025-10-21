@@ -17,6 +17,7 @@ import FormsPage from './pages/FormsPage.jsx';
 import AdvancedFormsPage from './pages/AdvancedFormsPage.jsx';
 import UIComponentsPage from './pages/UIComponentsPage.jsx';
 import PrimitivesPage from './pages/PrimitivesPage.jsx';
+import NavigationPage from './pages/NavigationPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -36,6 +37,7 @@ const navigationLinks = [
       { label: 'Primitives', href: '/primitives' },
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
+      { label: 'Navigation', href: '/navigation' },
       { label: 'Community', href: '/forum' }
     ]
   },
@@ -145,7 +147,6 @@ const Demo = () => {
 
 function AppContent() {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
   const { isDarkMode, toggleTheme } = useTheme();
 
   const socialLinks = [
@@ -163,48 +164,13 @@ function AppContent() {
 
   return (
     <div className="app">
-      {/* Left Sidebar Navigation - Always visible */}
+      {/* Left Sidebar Navigation - Always visible on all pages */}
       <Navigation 
         companyName="Acme UI" 
         links={navigationLinks}
         position="left"
         variant="sidebar"
       />
-
-      {/* Right Sidebar Navigation - Only on home page */}
-      {isHomePage && (
-        <Navigation 
-          companyName="Quick Access" 
-          links={[
-            { label: 'Forms', href: '/forms' },
-            { label: 'UI Components', href: '/ui-components' },
-            { label: 'Gallery', href: '/gallery' },
-            { label: 'Community', href: '/forum' }
-          ]}
-          position="right"
-          variant="sidebar"
-        />
-      )}
-
-      {/* Top Center Dropdown Navigation - Only on home page */}
-      {isHomePage && (
-        <Navigation 
-          companyName="Examples" 
-          links={[
-            { label: 'Heroes', href: '#heroes', children: [
-              { label: 'Static', href: '/static-hero' },
-              { label: 'Sticky', href: '/sticky-hero' }
-            ]},
-            { label: 'Component Types', href: '#components', children: [
-              { label: 'Forms', href: '/forms' },
-              { label: 'UI Components', href: '/ui-components' },
-              { label: 'Community', href: '/forum' }
-            ]}
-          ]}
-          position="top"
-          variant="dropdown"
-        />
-      )}
       
       <main className="main-content">
         <Routes>
@@ -216,6 +182,7 @@ function AppContent() {
           <Route path="/forum" element={<ForumPage />} />
           <Route path="/forms" element={<FormsPage />} />
           <Route path="/advanced-forms" element={<AdvancedFormsPage />} />
+          <Route path="/navigation" element={<NavigationPage />} />
           <Route path="/ui-components" element={<UIComponentsPage />} />
         </Routes>
       </main>
