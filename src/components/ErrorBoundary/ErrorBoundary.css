@@ -1,0 +1,376 @@
+/* ErrorBoundary Component Styles */
+
+.acme-error-boundary {
+  --error-color: var(--acme-color-error);
+  --error-bg: var(--acme-color-error-surface);
+  --error-border: var(--acme-color-error-border);
+  --border-radius: var(--acme-border-radius-lg);
+}
+
+/* Full Page Variant */
+.acme-error-boundary-full-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--acme-space-6);
+  background: var(--acme-color-surface);
+}
+
+.acme-error-boundary-full-page .acme-error-boundary-content {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  padding: var(--acme-space-8);
+  background: var(--acme-color-surface);
+  border: 1px solid var(--error-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--acme-shadow-xl);
+}
+
+/* Inline Variant */
+.acme-error-boundary-inline {
+  padding: var(--acme-space-4);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: var(--border-radius);
+  margin: var(--acme-space-4) 0;
+}
+
+.acme-error-boundary-inline .acme-error-boundary-content {
+  text-align: center;
+}
+
+/* Minimal Variant */
+.acme-error-boundary-minimal {
+  padding: var(--acme-space-3);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: var(--acme-border-radius-md);
+  margin: var(--acme-space-2) 0;
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-content {
+  display: flex;
+  align-items: center;
+  gap: var(--acme-space-2);
+  text-align: left;
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-title {
+  margin: 0;
+  font-size: var(--acme-text-size-sm);
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-message {
+  margin: 0;
+  font-size: var(--acme-text-size-xs);
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-actions {
+  margin-left: auto;
+  margin-top: 0;
+}
+
+/* Icon */
+.acme-error-boundary-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: var(--acme-space-4);
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-icon {
+  font-size: var(--acme-text-size-lg);
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+/* Title */
+.acme-error-boundary-title {
+  font-family: var(--acme-text-font-family-heading);
+  font-size: var(--acme-text-size-2xl);
+  font-weight: var(--acme-text-weight-bold);
+  color: var(--error-color);
+  margin: 0 0 var(--acme-space-3);
+  line-height: var(--acme-text-line-height-tight);
+}
+
+.acme-error-boundary-inline .acme-error-boundary-title {
+  font-size: var(--acme-text-size-xl);
+}
+
+/* Message */
+.acme-error-boundary-message {
+  font-size: var(--acme-text-size-base);
+  color: var(--acme-color-text-primary);
+  margin: 0 0 var(--acme-space-4);
+  line-height: var(--acme-text-line-height-normal);
+}
+
+.acme-error-boundary-inline .acme-error-boundary-message {
+  font-size: var(--acme-text-size-sm);
+}
+
+/* Retry Count */
+.acme-error-boundary-retry-count {
+  font-size: var(--acme-text-size-sm);
+  color: var(--acme-color-text-secondary);
+  margin: 0 0 var(--acme-space-4);
+  font-style: italic;
+}
+
+/* Action Buttons */
+.acme-error-boundary-actions {
+  display: flex;
+  gap: var(--acme-space-3);
+  justify-content: center;
+  margin-top: var(--acme-space-4);
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-actions {
+  justify-content: flex-end;
+}
+
+.acme-error-boundary-button {
+  padding: var(--acme-space-3) var(--acme-space-4);
+  border: 1px solid transparent;
+  border-radius: var(--acme-border-radius-md);
+  font-size: var(--acme-text-size-sm);
+  font-weight: var(--acme-text-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  min-width: 100px;
+}
+
+.acme-error-boundary-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--acme-color-primary-alpha);
+}
+
+.acme-error-boundary-button-primary {
+  background: var(--acme-color-primary);
+  color: var(--acme-color-primary-text);
+  border-color: var(--acme-color-primary);
+}
+
+.acme-error-boundary-button-primary:hover {
+  background: var(--acme-color-primary-hover);
+  border-color: var(--acme-color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.acme-error-boundary-button-secondary {
+  background: var(--acme-color-surface);
+  color: var(--acme-color-text-primary);
+  border-color: var(--acme-color-border);
+}
+
+.acme-error-boundary-button-secondary:hover {
+  background: var(--acme-color-surface-hover);
+  border-color: var(--acme-color-primary);
+  transform: translateY(-1px);
+}
+
+.acme-error-boundary-minimal .acme-error-boundary-button {
+  padding: var(--acme-space-2) var(--acme-space-3);
+  font-size: var(--acme-text-size-xs);
+  min-width: 80px;
+}
+
+/* Error Details */
+.acme-error-boundary-details {
+  margin-top: var(--acme-space-6);
+  padding: var(--acme-space-4);
+  background: var(--acme-color-surface-secondary);
+  border: 1px solid var(--acme-color-border);
+  border-radius: var(--acme-border-radius-md);
+  text-align: left;
+}
+
+.acme-error-boundary-details-summary {
+  font-size: var(--acme-text-size-sm);
+  font-weight: var(--acme-text-weight-medium);
+  color: var(--acme-color-text-primary);
+  cursor: pointer;
+  padding: var(--acme-space-2);
+  border-radius: var(--acme-border-radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.acme-error-boundary-details-summary:hover {
+  background: var(--acme-color-surface-hover);
+}
+
+.acme-error-boundary-details-content {
+  margin-top: var(--acme-space-3);
+  padding-top: var(--acme-space-3);
+  border-top: 1px solid var(--acme-color-border);
+}
+
+.acme-error-boundary-error-section {
+  margin-bottom: var(--acme-space-4);
+}
+
+.acme-error-boundary-error-section:last-child {
+  margin-bottom: 0;
+}
+
+.acme-error-boundary-error-section h4 {
+  font-size: var(--acme-text-size-sm);
+  font-weight: var(--acme-text-weight-medium);
+  color: var(--acme-color-text-primary);
+  margin: 0 0 var(--acme-space-2);
+}
+
+.acme-error-boundary-error-text {
+  font-family: var(--acme-text-font-family-mono);
+  font-size: var(--acme-text-size-xs);
+  color: var(--acme-color-text-secondary);
+  background: var(--acme-color-surface);
+  padding: var(--acme-space-3);
+  border: 1px solid var(--acme-color-border);
+  border-radius: var(--acme-border-radius-sm);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  line-height: var(--acme-text-line-height-relaxed);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Help Text */
+.acme-error-boundary-help {
+  margin-top: var(--acme-space-6);
+  padding: var(--acme-space-4);
+  background: var(--acme-color-surface-secondary);
+  border: 1px solid var(--acme-color-border);
+  border-radius: var(--acme-border-radius-md);
+  text-align: left;
+}
+
+.acme-error-boundary-help p {
+  font-size: var(--acme-text-size-sm);
+  color: var(--acme-color-text-primary);
+  margin: 0 0 var(--acme-space-2);
+  font-weight: var(--acme-text-weight-medium);
+}
+
+.acme-error-boundary-help ul {
+  margin: 0;
+  padding-left: var(--acme-space-4);
+}
+
+.acme-error-boundary-help li {
+  font-size: var(--acme-text-size-sm);
+  color: var(--acme-color-text-secondary);
+  margin-bottom: var(--acme-space-1);
+  line-height: var(--acme-text-line-height-normal);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .acme-error-boundary-full-page {
+    padding: var(--acme-space-4);
+  }
+
+  .acme-error-boundary-full-page .acme-error-boundary-content {
+    padding: var(--acme-space-6);
+  }
+
+  .acme-error-boundary-title {
+    font-size: var(--acme-text-size-xl);
+  }
+
+  .acme-error-boundary-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .acme-error-boundary-button {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .acme-error-boundary-minimal .acme-error-boundary-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--acme-space-3);
+  }
+
+  .acme-error-boundary-minimal .acme-error-boundary-actions {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .acme-error-boundary-details {
+  background: var(--acme-color-surface-secondary);
+  border-color: var(--acme-color-border);
+}
+
+[data-theme="dark"] .acme-error-boundary-error-text {
+  background: var(--acme-color-surface);
+  border-color: var(--acme-color-border);
+}
+
+[data-theme="dark"] .acme-error-boundary-help {
+  background: var(--acme-color-surface-secondary);
+  border-color: var(--acme-color-border);
+}
+
+[data-theme="dark"] .acme-error-boundary-button-secondary {
+  background: var(--acme-color-surface);
+  border-color: var(--acme-color-border);
+}
+
+/* Focus Visible Support */
+.acme-error-boundary-button:focus-visible,
+.acme-error-boundary-details-summary:focus-visible {
+  outline: 2px solid var(--acme-color-primary);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .acme-error-boundary-full-page .acme-error-boundary-content,
+  .acme-error-boundary-inline,
+  .acme-error-boundary-minimal {
+    border-width: 2px;
+  }
+  
+  .acme-error-boundary-button {
+    border-width: 2px;
+  }
+  
+  .acme-error-boundary-details,
+  .acme-error-boundary-error-text,
+  .acme-error-boundary-help {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .acme-error-boundary-button,
+  .acme-error-boundary-details-summary {
+    transition: none;
+  }
+  
+  .acme-error-boundary-button:hover {
+    transform: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .acme-error-boundary-actions {
+    display: none;
+  }
+  
+  .acme-error-boundary-details {
+    break-inside: avoid;
+  }
+}
