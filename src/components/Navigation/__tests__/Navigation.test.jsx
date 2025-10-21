@@ -31,23 +31,26 @@ describe('Navigation', () => {
   test('toggles navigation visibility', () => {
     render(<Navigation companyName="Test Corp" links={mockLinks} />);
     
-    const toggleButton = screen.getByRole('button', { name: /toggle navigation/i });
-    
     // Initially collapsed - links should not be visible
     expect(screen.queryByText('Home')).not.toBeInTheDocument();
     
-    // Click to expand
-    fireEvent.click(toggleButton);
+    // In collapsed state, we should have the clickable area
+    const clickableArea = screen.getByLabelText(/expand navigation/i);
+    expect(clickableArea).toBeInTheDocument();
+    
+    // Click the clickable area to expand
+    fireEvent.click(clickableArea);
     
     // Links should now be visible
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('About')).toBeInTheDocument();
     expect(screen.getByText('Contact')).toBeInTheDocument();
     
-    // Click to collapse
+    // Click the toggle button to collapse
+    const toggleButton = screen.getByRole('button', { name: /toggle navigation/i });
     fireEvent.click(toggleButton);
     
-    // Links should be hidden again
+    // Links should be hidden again - wait for state change
     expect(screen.queryByText('Home')).not.toBeInTheDocument();
   });
 
@@ -75,5 +78,31 @@ describe('Navigation', () => {
     
     // Should not crash and should not show any links
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  test('closes navigation when clicking outside', () => {
+    render(
+      <div>
+        <Navigation companyName="Test Corp" links={mockLinks} />
+        <div data-testid="outside-element">Outside content</div>
+      </div>
+    );
+    
+    // Initially collapsed
+    expect(screen.queryByText('Home')).not.toBeInTheDocument();
+    
+    // Expand navigation
+    const clickableArea = screen.getByLabelText(/expand navigation/i);
+    fireEvent.click(clickableArea);
+    
+    // Links should be visible
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    
+    // Click outside the navigation
+    const outsideElement = screen.getByTestId('outside-element');
+    fireEvent.mouseDown(outsideElement);
+    
+    // Navigation should close
+    expect(screen.queryByText('Home')).not.toBeInTheDocument();
   });
 });

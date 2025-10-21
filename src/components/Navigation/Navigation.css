@@ -80,6 +80,29 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Make entire collapsed navigation clickable */
+.nav-collapsed-clickable {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.nav-collapsed-clickable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.nav-collapsed-clickable .nav-header {
+  justify-content: center;
+  padding: 25px 10px;
+  border-bottom: none;
+}
+
+.nav-collapsed-clickable .nav-toggle {
+  pointer-events: none; /* Prevent double-click events */
+}
+
 /* Center the toggle button when collapsed */
 .acme-navigation.collapsed .nav-header {
   justify-content: center;
@@ -294,4 +317,8 @@
 
 [data-theme="dark"] .hamburger-line {
   background-color: #e6edf3;
+}
+
+[data-theme="dark"] .nav-collapsed-clickable:hover {
+  background-color: #21262d;
 }
