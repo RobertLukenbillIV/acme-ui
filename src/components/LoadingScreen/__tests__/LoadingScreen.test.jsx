@@ -170,6 +170,11 @@ describe('LoadingScreen.Async', () => {
     );
     
     expect(screen.getByText('Loading...')).toBeInTheDocument();
+    
+    // Wait for the async operation to complete and clean up
+    await act(async () => {
+      jest.advanceTimersByTime(100);
+    });
   });
 
   it('calls onSuccess when async operation completes', async () => {
@@ -182,8 +187,10 @@ describe('LoadingScreen.Async', () => {
       </LoadingScreen.Async>
     );
     
-    await waitFor(() => {
-      expect(onSuccess).toHaveBeenCalledWith('success');
+    await act(async () => {
+      await waitFor(() => {
+        expect(onSuccess).toHaveBeenCalledWith('success');
+      });
     });
   });
 });
