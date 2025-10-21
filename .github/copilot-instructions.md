@@ -3,30 +3,86 @@
 
 Keep guidance short and focused. Use these rules to make productive, low-risk changes in this repo.
 
-- Project purpose: a React UI component library (Navigation, Form inputs, Card, Footnote, ImageGallery, Hero, Forum) with a comprehensive demo site under `demo/`.
-- Entry points: library exports in `src/index.js`; demo app entry is `demo/main.jsx` and `demo/index.html`.
+**Project purpose**: React UI component library with 20+ components (Navigation, Forms, Cards, Hero, Forum, ImageGallery, etc.) plus comprehensive demo site under `demo/`.
 
-Key developer commands (from `package.json`):
+**Entry points**: Library exports in `src/index.js`; demo app entry is `demo/main.jsx` and `demo/index.html`.
 
-- Start local demo: npm run dev (uses Vite with `vite.demo.config.js`). Demo serves at http://localhost:3000 by default.
-- Build library for distribution: npm run build (Vite build — outputs into `dist/`).
+## Key developer commands (from `package.json`):
 
-Files and conventions to read before editing:
+- **Start local demo**: `npm run dev` (uses Vite with `vite.demo.config.js`, serves at http://localhost:3000)
+- **Build library**: `npm run build` (Vite library build → outputs to `dist/`)
+- **Build demo**: `npm run build:demo` (builds demo app for deployment)
+- **Test suite**: `npm test` (Jest + React Testing Library)
+- **Test coverage**: `npm run test:coverage`
 
-- `src/` — component sources. Components export from `src/index.js`.
-- `src/components/*/*.(jsx|js|css)` — each component colocates a CSS file (class names are prefixed with `acme-`). Follow the existing class naming and file organization.
-- `demo/` — runnable examples and the demo entry; useful for visual verification of UI changes.
-- `COMPONENTS.md` and `README.md` — canonical examples and usage snippets. When adding or changing public props, update these docs.
+## Architecture patterns to follow:
 
-Architecture notes (why things are organized this way):
+**Component structure** (`src/components/ComponentName/`):
+- `ComponentName.jsx` - React component with props destructuring
+- `ComponentName.css` - Component styles with `.acme-` prefixed classes
+- `index.js` - Simple re-export: `export { default } from './ComponentName';`
+- `__tests__/ComponentName.test.jsx` - Jest tests with React Testing Library
 
-- The library is distributed as a small set of default and named exports (see `src/index.js`). Keep public API stable: prefer adding new named exports rather than changing existing ones.
-- Styling is implemented with plain CSS files scoped by `acme-` prefixes to avoid global conflicts. Avoid introducing CSS-in-JS or global selectors that break encapsulation.
+**Styling system**:
+- CSS classes use `.acme-` prefix (e.g. `.acme-card`, `.acme-navigation`)
+- Dark mode via `[data-theme="dark"]` CSS selectors
+- Component CSS files are colocated and imported in JSX files
+- Theme switching handled by `demo/theme.jsx` ThemeProvider
+
+**Export patterns** (see `src/index.js`):
+- Default exports: `export { default as ComponentName } from './components/ComponentName';`
+- Named exports from component groups: `export { TextInput, Select, Checkbox, TextArea } from './components/Form';`
+- Wrapper components: `export { default as Badge, BadgeWrapper } from './components/Badge';`
+
+**Props patterns** (consistent across components):
+- Destructure props with defaults: `({ title, children, variant = 'default', className = '', ...props })`
+- Spread remaining props: `<div {...props}` for extensibility
+- CSS class composition: `className={\`acme-component \${variant} \${className}\`}`
+
+## Critical verification workflow:
+
+1. **Visual check**: Run `npm run dev` → test changes at http://localhost:3000
+2. **Export verification**: Ensure new components are exported in `src/index.js`
+3. **Test execution**: Run `npm test` → all tests must pass
+4. **Build verification**: Run `npm run build` → confirms library builds without errors
+
+## Component-specific patterns:
+
+**Form components** (`src/components/Form/`):
+- Controlled input pattern: accept `value` and `onChange` props
+- Example: `<TextInput value={name} onChange={(e) => setName(e.target.value)} />`
+- Error state pattern: `error` prop displays validation message
+
+**Navigation** (`src/components/Navigation/Navigation.jsx`):
+- Uses React `useState` for toggle state: `const [isExpanded, setIsExpanded] = useState(false);`
+- Supports nested links: `{ label: 'Parent', href: '/parent', children: [...] }`
+- Position variants: `position="left|right|top"`, `variant="sidebar|dropdown"`
+
+**Theme system** (demo only):
+- `demo/theme.jsx` provides `ThemeProvider` and `useTheme` hook
+- Theme applied via `document.documentElement.setAttribute('data-theme', 'dark')`
+- CSS dark mode: `[data-theme="dark"] .acme-component { /* dark styles */ }`
+
+## Integration & deployment:
+
+**Demo development pattern**:
+- Demo imports components from `src/` (relative paths) for instant hot reload
+- Runtime behavior in demo reflects source changes immediately
+- Each demo page in `demo/pages/` showcases specific component features
+
+**Build system**:
+- Library build: `vite.config.js` creates UMD + ES modules in `dist/`
+- Demo build: `vite.demo.config.js` builds SPA to `demo-dist/`
+- Vercel deployment configured in `vercel.json` with `npm run build:demo`
+
+**Dependencies**:
+- React/ReactDOM are peerDependencies - never bundle React versions
+- `react-router-dom` only used in demo, not in library components
 
 Coding guidelines for PRs and patches:
 
 - Keep changes small and focused. The demo app is the primary verification surface — run `npm run dev` and visually verify the component.
-- Preserve backward-compatible exports. If adding a prop, make it optional and document it in `COMPONENTS.md` and `README.md`.
+- Preserve backward-compatible exports. If adding a prop, make it optional and document it in `README.md`.
 - When modifying styles, update the component's local CSS file (e.g. `src/components/Navigation/Navigation.css`) and test in the demo.
 
 Testing and verification steps for agents:
@@ -49,7 +105,7 @@ Examples of project-specific patterns:
 
 When updating public docs:
 
-- Update `COMPONENTS.md` for usage examples and `README.md` for install/dev/build notes.
+- Update `README.md` for install/dev/build notes and component examples
 - If you add new files that should be distributed, ensure the build outputs them into `dist/` and that `src/index.js` exports them.
 
 If unsure or the change is large:
