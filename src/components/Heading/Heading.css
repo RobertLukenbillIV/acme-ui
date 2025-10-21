@@ -1,0 +1,133 @@
+/* Heading Component Styles */
+@import '../../tokens/index.css';
+
+.acme-heading {
+  font-family: var(--acme-font-sans);
+  margin: 0;
+  font-weight: var(--acme-font-semibold);
+}
+
+/* Heading Levels - Using Design Tokens */
+.acme-heading-1 {
+  font-size: var(--acme-heading-h1-size);
+  font-weight: var(--acme-heading-h1-weight);
+  line-height: var(--acme-heading-h1-line-height);
+  letter-spacing: var(--acme-heading-h1-letter-spacing);
+  margin-bottom: var(--acme-space-6);
+}
+
+.acme-heading-2 {
+  font-size: var(--acme-heading-h2-size);
+  font-weight: var(--acme-heading-h2-weight);
+  line-height: var(--acme-heading-h2-line-height);
+  letter-spacing: var(--acme-heading-h2-letter-spacing);
+  margin-bottom: var(--acme-space-5);
+}
+
+.acme-heading-3 {
+  font-size: var(--acme-heading-h3-size);
+  font-weight: var(--acme-heading-h3-weight);
+  line-height: var(--acme-heading-h3-line-height);
+  letter-spacing: var(--acme-heading-h3-letter-spacing);
+  margin-bottom: var(--acme-space-4);
+}
+
+.acme-heading-4 {
+  font-size: var(--acme-heading-h4-size);
+  font-weight: var(--acme-heading-h4-weight);
+  line-height: var(--acme-heading-h4-line-height);
+  letter-spacing: var(--acme-heading-h4-letter-spacing);
+  margin-bottom: var(--acme-space-3);
+}
+
+.acme-heading-5 {
+  font-size: var(--acme-heading-h5-size);
+  font-weight: var(--acme-heading-h5-weight);
+  line-height: var(--acme-heading-h5-line-height);
+  letter-spacing: var(--acme-heading-h5-letter-spacing);
+  margin-bottom: var(--acme-space-3);
+}
+
+.acme-heading-6 {
+  font-size: var(--acme-heading-h6-size);
+  font-weight: var(--acme-heading-h6-weight);
+  line-height: var(--acme-heading-h6-line-height);
+  letter-spacing: var(--acme-heading-h6-letter-spacing);
+  margin-bottom: var(--acme-space-2);
+}
+
+/* Color Variants */
+.acme-heading-color-primary {
+  color: var(--acme-color-text-primary);
+}
+
+.acme-heading-color-secondary {
+  color: var(--acme-color-text-secondary);
+}
+
+.acme-heading-color-tertiary {
+  color: var(--acme-color-text-tertiary);
+}
+
+.acme-heading-color-success {
+  color: var(--acme-color-text-success);
+}
+
+.acme-heading-color-warning {
+  color: var(--acme-color-text-warning);
+}
+
+.acme-heading-color-error {
+  color: var(--acme-color-text-error);
+}
+
+.acme-heading-color-inverse {
+  color: var(--acme-color-text-inverse);
+}
+
+/* Utility Modifiers */
+.acme-heading.text-center {
+  text-align: center;
+}
+
+.acme-heading.text-left {
+  text-align: left;
+}
+
+.acme-heading.text-right {
+  text-align: right;
+}
+
+.acme-heading.no-margin {
+  margin-bottom: 0;
+}
+
+.acme-heading.gradient-text {
+  background: linear-gradient(135deg, var(--acme-color-primary-600), var(--acme-color-primary-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Typography Enhancement */
+@media (max-width: 640px) {
+  .acme-heading-1 {
+    font-size: var(--acme-text-3xl);
+  }
+  
+  .acme-heading-2 {
+    font-size: var(--acme-text-2xl);
+  }
+  
+  .acme-heading-3 {
+    font-size: var(--acme-text-xl);
+  }
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .acme-heading.gradient-text {
+  background: linear-gradient(135deg, var(--acme-color-primary-400), var(--acme-color-primary-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

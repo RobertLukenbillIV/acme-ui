@@ -1,0 +1,221 @@
+/**
+ * Acme UI Typography Tokens
+ * 
+ * CSS custom properties for consistent typography across components.
+ * Includes font families, sizes, weights, and semantic typography styles.
+ */
+
+:root {
+  /* Font Families */
+  --acme-font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --acme-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --acme-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  /* Font Weights */
+  --acme-font-thin: 100;
+  --acme-font-extralight: 200;
+  --acme-font-light: 300;
+  --acme-font-normal: 400;
+  --acme-font-medium: 500;
+  --acme-font-semibold: 600;
+  --acme-font-bold: 700;
+  --acme-font-extrabold: 800;
+  --acme-font-black: 900;
+
+  /* Font Sizes - Modular Scale */
+  --acme-text-xs: 0.75rem;      /* 12px */
+  --acme-text-sm: 0.875rem;     /* 14px */
+  --acme-text-base: 1rem;       /* 16px */
+  --acme-text-lg: 1.125rem;     /* 18px */
+  --acme-text-xl: 1.25rem;      /* 20px */
+  --acme-text-2xl: 1.5rem;      /* 24px */
+  --acme-text-3xl: 1.875rem;    /* 30px */
+  --acme-text-4xl: 2.25rem;     /* 36px */
+  --acme-text-5xl: 3rem;        /* 48px */
+  --acme-text-6xl: 3.75rem;     /* 60px */
+  --acme-text-7xl: 4.5rem;      /* 72px */
+  --acme-text-8xl: 6rem;        /* 96px */
+  --acme-text-9xl: 8rem;        /* 128px */
+
+  /* Heading Sizes with Responsive Scaling */
+  --acme-heading-h1-size: var(--acme-text-4xl);
+  --acme-heading-h1-weight: var(--acme-font-bold);
+  --acme-heading-h1-line-height: var(--acme-leading-tight);
+  --acme-heading-h1-letter-spacing: var(--acme-tracking-tight);
+
+  --acme-heading-h2-size: var(--acme-text-3xl);
+  --acme-heading-h2-weight: var(--acme-font-bold);
+  --acme-heading-h2-line-height: var(--acme-leading-tight);
+  --acme-heading-h2-letter-spacing: var(--acme-tracking-tight);
+
+  --acme-heading-h3-size: var(--acme-text-2xl);
+  --acme-heading-h3-weight: var(--acme-font-semibold);
+  --acme-heading-h3-line-height: var(--acme-leading-snug);
+  --acme-heading-h3-letter-spacing: var(--acme-tracking-normal);
+
+  --acme-heading-h4-size: var(--acme-text-xl);
+  --acme-heading-h4-weight: var(--acme-font-semibold);
+  --acme-heading-h4-line-height: var(--acme-leading-snug);
+  --acme-heading-h4-letter-spacing: var(--acme-tracking-normal);
+
+  --acme-heading-h5-size: var(--acme-text-lg);
+  --acme-heading-h5-weight: var(--acme-font-medium);
+  --acme-heading-h5-line-height: var(--acme-leading-normal);
+  --acme-heading-h5-letter-spacing: var(--acme-tracking-normal);
+
+  --acme-heading-h6-size: var(--acme-text-base);
+  --acme-heading-h6-weight: var(--acme-font-medium);
+  --acme-heading-h6-line-height: var(--acme-leading-normal);
+  --acme-heading-h6-letter-spacing: var(--acme-tracking-wide);
+
+  /* Body Text Styles */
+  --acme-body-size: var(--acme-text-base);
+  --acme-body-weight: var(--acme-font-normal);
+  --acme-body-line-height: var(--acme-leading-relaxed);
+  --acme-body-letter-spacing: var(--acme-tracking-normal);
+
+  --acme-body-sm-size: var(--acme-text-sm);
+  --acme-body-sm-weight: var(--acme-font-normal);
+  --acme-body-sm-line-height: var(--acme-leading-normal);
+  --acme-body-sm-letter-spacing: var(--acme-tracking-normal);
+
+  --acme-body-lg-size: var(--acme-text-lg);
+  --acme-body-lg-weight: var(--acme-font-normal);
+  --acme-body-lg-line-height: var(--acme-leading-relaxed);
+  --acme-body-lg-letter-spacing: var(--acme-tracking-normal);
+
+  /* Caption and Label Styles */
+  --acme-caption-size: var(--acme-text-xs);
+  --acme-caption-weight: var(--acme-font-normal);
+  --acme-caption-line-height: var(--acme-leading-normal);
+  --acme-caption-letter-spacing: var(--acme-tracking-wide);
+
+  --acme-label-size: var(--acme-text-sm);
+  --acme-label-weight: var(--acme-font-medium);
+  --acme-label-line-height: var(--acme-leading-normal);
+  --acme-label-letter-spacing: var(--acme-tracking-normal);
+
+  /* Code and Monospace Text */
+  --acme-code-size: var(--acme-text-sm);
+  --acme-code-weight: var(--acme-font-normal);
+  --acme-code-line-height: var(--acme-leading-normal);
+  --acme-code-letter-spacing: var(--acme-tracking-normal);
+
+  /* Link Styles */
+  --acme-link-weight: var(--acme-font-normal);
+  --acme-link-decoration: underline;
+  --acme-link-decoration-thickness: 1px;
+  --acme-link-underline-offset: 2px;
+}
+
+/* Responsive Typography Scaling */
+@media (min-width: 640px) {
+  :root {
+    --acme-heading-h1-size: var(--acme-text-5xl);
+    --acme-heading-h2-size: var(--acme-text-4xl);
+    --acme-heading-h3-size: var(--acme-text-3xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --acme-heading-h1-size: var(--acme-text-6xl);
+    --acme-heading-h2-size: var(--acme-text-5xl);
+    --acme-heading-h3-size: var(--acme-text-4xl);
+  }
+}
+
+/* Typography Utility Classes */
+.acme-font-sans { font-family: var(--acme-font-sans); }
+.acme-font-serif { font-family: var(--acme-font-serif); }
+.acme-font-mono { font-family: var(--acme-font-mono); }
+
+.acme-text-xs { font-size: var(--acme-text-xs); }
+.acme-text-sm { font-size: var(--acme-text-sm); }
+.acme-text-base { font-size: var(--acme-text-base); }
+.acme-text-lg { font-size: var(--acme-text-lg); }
+.acme-text-xl { font-size: var(--acme-text-xl); }
+.acme-text-2xl { font-size: var(--acme-text-2xl); }
+.acme-text-3xl { font-size: var(--acme-text-3xl); }
+.acme-text-4xl { font-size: var(--acme-text-4xl); }
+.acme-text-5xl { font-size: var(--acme-text-5xl); }
+.acme-text-6xl { font-size: var(--acme-text-6xl); }
+
+.acme-font-thin { font-weight: var(--acme-font-thin); }
+.acme-font-light { font-weight: var(--acme-font-light); }
+.acme-font-normal { font-weight: var(--acme-font-normal); }
+.acme-font-medium { font-weight: var(--acme-font-medium); }
+.acme-font-semibold { font-weight: var(--acme-font-semibold); }
+.acme-font-bold { font-weight: var(--acme-font-bold); }
+.acme-font-extrabold { font-weight: var(--acme-font-extrabold); }
+
+.acme-leading-none { line-height: var(--acme-leading-none); }
+.acme-leading-tight { line-height: var(--acme-leading-tight); }
+.acme-leading-snug { line-height: var(--acme-leading-snug); }
+.acme-leading-normal { line-height: var(--acme-leading-normal); }
+.acme-leading-relaxed { line-height: var(--acme-leading-relaxed); }
+.acme-leading-loose { line-height: var(--acme-leading-loose); }
+
+.acme-tracking-tighter { letter-spacing: var(--acme-tracking-tighter); }
+.acme-tracking-tight { letter-spacing: var(--acme-tracking-tight); }
+.acme-tracking-normal { letter-spacing: var(--acme-tracking-normal); }
+.acme-tracking-wide { letter-spacing: var(--acme-tracking-wide); }
+.acme-tracking-wider { letter-spacing: var(--acme-tracking-wider); }
+.acme-tracking-widest { letter-spacing: var(--acme-tracking-widest); }
+
+/* Semantic Typography Classes */
+.acme-heading-1 {
+  font-size: var(--acme-heading-h1-size);
+  font-weight: var(--acme-heading-h1-weight);
+  line-height: var(--acme-heading-h1-line-height);
+  letter-spacing: var(--acme-heading-h1-letter-spacing);
+  color: var(--acme-color-text-primary);
+}
+
+.acme-heading-2 {
+  font-size: var(--acme-heading-h2-size);
+  font-weight: var(--acme-heading-h2-weight);
+  line-height: var(--acme-heading-h2-line-height);
+  letter-spacing: var(--acme-heading-h2-letter-spacing);
+  color: var(--acme-color-text-primary);
+}
+
+.acme-heading-3 {
+  font-size: var(--acme-heading-h3-size);
+  font-weight: var(--acme-heading-h3-weight);
+  line-height: var(--acme-heading-h3-line-height);
+  letter-spacing: var(--acme-heading-h3-letter-spacing);
+  color: var(--acme-color-text-primary);
+}
+
+.acme-body {
+  font-size: var(--acme-body-size);
+  font-weight: var(--acme-body-weight);
+  line-height: var(--acme-body-line-height);
+  letter-spacing: var(--acme-body-letter-spacing);
+  color: var(--acme-color-text-primary);
+}
+
+.acme-body-sm {
+  font-size: var(--acme-body-sm-size);
+  font-weight: var(--acme-body-sm-weight);
+  line-height: var(--acme-body-sm-line-height);
+  letter-spacing: var(--acme-body-sm-letter-spacing);
+  color: var(--acme-color-text-secondary);
+}
+
+.acme-caption {
+  font-size: var(--acme-caption-size);
+  font-weight: var(--acme-caption-weight);
+  line-height: var(--acme-caption-line-height);
+  letter-spacing: var(--acme-caption-letter-spacing);
+  color: var(--acme-color-text-tertiary);
+}
+
+.acme-label {
+  font-size: var(--acme-label-size);
+  font-weight: var(--acme-label-weight);
+  line-height: var(--acme-label-line-height);
+  letter-spacing: var(--acme-label-letter-spacing);
+  color: var(--acme-color-text-primary);
+}

@@ -18,6 +18,7 @@ import AdvancedFormsPage from './pages/AdvancedFormsPage.jsx';
 import UIComponentsPage from './pages/UIComponentsPage.jsx';
 import PrimitivesPage from './pages/PrimitivesPage.jsx';
 import NavigationPage from './pages/NavigationPage.jsx';
+import TypographyPage from './pages/TypographyPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -35,6 +36,7 @@ const navigationLinks = [
     href: '#components',
     children: [
       { label: 'Primitives', href: '/primitives' },
+      { label: 'Typography', href: '/typography' },
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Navigation', href: '/navigation' },
@@ -183,6 +185,7 @@ function AppContent() {
           <Route path="/forms" element={<FormsPage />} />
           <Route path="/advanced-forms" element={<AdvancedFormsPage />} />
           <Route path="/navigation" element={<NavigationPage />} />
+          <Route path="/typography" element={<TypographyPage />} />
           <Route path="/ui-components" element={<UIComponentsPage />} />
         </Routes>
       </main>
