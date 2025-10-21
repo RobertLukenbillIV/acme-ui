@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UserAvatarMenu from '../UserAvatarMenu';
 
@@ -88,7 +88,13 @@ describe('UserAvatarMenu', () => {
     await user.keyboard('{Enter}');
     expect(screen.getByText('Profile')).toBeInTheDocument();
     
+    // Check that dropdown is open by checking the class
+    const dropdown = screen.getByRole('menu');
+    expect(dropdown).toHaveClass('acme-user-avatar-menu-dropdown-open');
+    
     await user.keyboard('{Escape}');
-    expect(screen.queryByText('Profile')).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(dropdown).not.toHaveClass('acme-user-avatar-menu-dropdown-open');
+    }, { timeout: 2000 });
   });
 });

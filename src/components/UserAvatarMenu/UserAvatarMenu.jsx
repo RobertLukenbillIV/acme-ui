@@ -51,7 +51,7 @@ const UserAvatarMenu = ({
 
   const items = menuItems.length > 0 ? menuItems : defaultMenuItems;
 
-  // Close menu when clicking outside
+  // Handle clicks outside the component
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -59,18 +59,25 @@ const UserAvatarMenu = ({
       }
     };
 
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('touchstart', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, [isOpen]);
-
-  // Handle keyboard navigation
+  }, [isOpen]);  // Handle keyboard navigation
   const handleKeyDown = (event) => {
     if (event.key === 'Escape') {
       setIsOpen(false);

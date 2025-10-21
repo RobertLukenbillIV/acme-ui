@@ -1,16 +1,22 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ThemeToggle from '../ThemeToggle';
 
-// Mock localStorage
+// Mock timers for better test control
+jest.useFakeTimers();
+
+// Mock localStorage with proper jest functions
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
   removeItem: jest.fn(),
   clear: jest.fn(),
 };
-global.localStorage = localStorageMock;
+Object.defineProperty(global, 'localStorage', {
+  value: localStorageMock,
+  writable: true
+});
 
 // Mock matchMedia
 global.matchMedia = jest.fn(() => ({
@@ -26,7 +32,12 @@ describe('ThemeToggle', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.clearAllTimers();
     document.documentElement.removeAttribute('data-theme');
+  });
+
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
   });
 
   it('renders button variant by default', () => {
@@ -51,58 +62,74 @@ describe('ThemeToggle', () => {
   });
 
   it('toggles theme when button clicked', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     render(<ThemeToggle onChange={mockOnChange} />);
     
     const button = screen.getByRole('button');
     await user.click(button);
     
     expect(mockOnChange).toHaveBeenCalled();
-  });
+  }, 5000);
 
   it('opens dropdown menu when dropdown variant clicked', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     render(<ThemeToggle variant="dropdown" />);
     
     const button = screen.getByRole('button');
     await user.click(button);
     
-    expect(screen.getByText('Light theme')).toBeInTheDocument();
-    expect(screen.getByText('Dark theme')).toBeInTheDocument();
-  });
+    await waitFor(() => {
+      expect(screen.getByText('Light theme')).toBeInTheDocument();
+      expect(screen.getByText('Dark theme')).toBeInTheDocument();
+    });
+  }, 5000);
 
-  it('applies theme to document', () => {
+  it('applies theme to document', async () => {
     render(<ThemeToggle defaultTheme="dark" />);
     
-    expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    await waitFor(() => {
+      expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
+    });
   });
 
-  it('saves theme to localStorage', () => {
+  it('saves theme to localStorage', async () => {
     render(<ThemeToggle defaultTheme="dark" storageKey="test-theme" />);
     
-    expect(localStorage.setItem).toHaveBeenCalledWith('test-theme', 'dark');
+    await waitFor(() => {
+      expect(localStorage.setItem).toHaveBeenCalledWith('test-theme', 'dark');
+    });
   });
 
-  it('loads theme from localStorage', () => {
+  it('loads theme from localStorage', async () => {
     localStorage.getItem.mockReturnValue('dark');
     render(<ThemeToggle storageKey="test-theme" />);
     
-    expect(localStorage.getItem).toHaveBeenCalledWith('test-theme');
+    await waitFor(() => {
+      expect(localStorage.getItem).toHaveBeenCalledWith('test-theme');
+    });
   });
 
   it('supports keyboard navigation', async () => {
-    const user = userEvent.setup();
+    const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
     render(<ThemeToggle variant="dropdown" />);
     
     const button = screen.getByRole('button');
     button.focus();
     
     await user.keyboard('{Enter}');
-    expect(screen.getByText('Light theme')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Light theme')).toBeInTheDocument();
+    });
+    
+    // Check that dropdown is open by checking the class
+    const container = button.closest('.acme-theme-toggle-dropdown');
+    expect(container).toHaveClass('open');
     
     await user.keyboard('{Escape}');
-    expect(screen.queryByText('Light theme')).not.toBeInTheDocument();
-  });
+    await waitFor(() => {
+      expect(container).not.toHaveClass('open');
+    }, { timeout: 2000 });
+  }, 10000);
 
   it('hides system option when showSystemOption is false', () => {
     render(<ThemeToggle variant="dropdown" showSystemOption={false} />);

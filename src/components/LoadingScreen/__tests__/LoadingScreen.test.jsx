@@ -1,8 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import LoadingScreen from '../LoadingScreen';
 
+// Mock timers for tests
+jest.useFakeTimers();
+
 describe('LoadingScreen', () => {
+  beforeEach(() => {
+    jest.clearAllTimers();
+  });
+
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+  });
   it('renders spinner variant by default', () => {
     render(<LoadingScreen />);
     
@@ -91,10 +101,16 @@ describe('LoadingScreen', () => {
     expect(screen.getByText('Custom skeleton line 1')).toBeInTheDocument();
   });
 
-  it('shows timeout state after timeout period', (done) => {
-    render(<LoadingScreen timeout={100} onTimeout={() => done()} />);
+  it('shows timeout state after timeout period', async () => {
+    const onTimeout = jest.fn();
+    render(<LoadingScreen timeout={100} onTimeout={onTimeout} />);
     
-    // Timeout callback should be called after 100ms
+    // Fast-forward time to trigger timeout
+    act(() => {
+      jest.advanceTimersByTime(100);
+    });
+    
+    expect(onTimeout).toHaveBeenCalled();
   });
 
   it('includes screen reader text', () => {
@@ -136,6 +152,14 @@ describe('LoadingScreen.Suspense', () => {
 });
 
 describe('LoadingScreen.Async', () => {
+  beforeEach(() => {
+    jest.clearAllTimers();
+  });
+
+  afterEach(() => {
+    jest.runOnlyPendingTimers();
+  });
+
   it('shows loading state while async operation is pending', async () => {
     const asyncOperation = () => new Promise(resolve => setTimeout(() => resolve('data'), 100));
     
@@ -148,17 +172,18 @@ describe('LoadingScreen.Async', () => {
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  it('calls onSuccess when async operation completes', (done) => {
+  it('calls onSuccess when async operation completes', async () => {
+    const onSuccess = jest.fn();
     const asyncOperation = () => Promise.resolve('success');
-    const onSuccess = (result) => {
-      expect(result).toBe('success');
-      done();
-    };
     
     render(
       <LoadingScreen.Async asyncOperation={asyncOperation} onSuccess={onSuccess}>
         {(data) => <div>Data: {data}</div>}
       </LoadingScreen.Async>
     );
+    
+    await waitFor(() => {
+      expect(onSuccess).toHaveBeenCalledWith('success');
+    });
   });
 });

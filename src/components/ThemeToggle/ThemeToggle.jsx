@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './ThemeToggle.css';
 
 /**
@@ -28,12 +28,12 @@ const ThemeToggle = ({
   const [systemTheme, setSystemTheme] = useState('light');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Theme options
-  const themeOptions = [
+  // Theme options (memoized to prevent re-render loops)
+  const themeOptions = useMemo(() => [
     { value: 'light', label: 'Light', icon: '☀️', description: 'Light theme' },
     { value: 'dark', label: 'Dark', icon: '🌙', description: 'Dark theme' },
     ...(showSystemOption ? [{ value: 'system', label: 'System', icon: '💻', description: 'Follow system theme' }] : [])
-  ];
+  ], [showSystemOption]);
 
   // Detect system theme preference
   useEffect(() => {
