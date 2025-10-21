@@ -105,4 +105,45 @@ describe('Navigation', () => {
     // Navigation should close
     expect(screen.queryByText('Home')).not.toBeInTheDocument();
   });
+
+  test('closes navigation when clicking expanded header area', () => {
+    render(<Navigation companyName="Test Corp" links={mockLinks} />);
+    
+    // Initially collapsed
+    expect(screen.queryByText('Home')).not.toBeInTheDocument();
+    
+    // Expand navigation by clicking collapsed area
+    const clickableArea = screen.getByLabelText(/expand navigation/i);
+    fireEvent.click(clickableArea);
+    
+    // Links should be visible
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Test Corp')).toBeInTheDocument();
+    
+    // Click the expanded header area to collapse
+    const expandedHeader = screen.getByLabelText(/collapse navigation/i);
+    fireEvent.click(expandedHeader);
+    
+    // Navigation should close
+    expect(screen.queryByText('Home')).not.toBeInTheDocument();
+    expect(screen.queryByText('Test Corp')).not.toBeInTheDocument();
+  });
+
+  test('closes navigation when pressing Enter on expanded header', () => {
+    render(<Navigation companyName="Test Corp" links={mockLinks} />);
+    
+    // Expand navigation first
+    const clickableArea = screen.getByLabelText(/expand navigation/i);
+    fireEvent.click(clickableArea);
+    
+    // Links should be visible
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    
+    // Press Enter on the expanded header area
+    const expandedHeader = screen.getByLabelText(/collapse navigation/i);
+    fireEvent.keyDown(expandedHeader, { key: 'Enter' });
+    
+    // Navigation should close
+    expect(screen.queryByText('Home')).not.toBeInTheDocument();
+  });
 });

@@ -105,13 +105,24 @@ const Navigation = ({
         </div>
       )}
       
-      {/* Expanded state with individual toggle button */}
+      {/* Expanded state with clickable header */}
       {isExpanded && (
         <>
-          <div className="nav-header">
+          <div 
+            className="nav-header nav-header-clickable" 
+            onClick={toggleNavigation}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleNavigation();
+              }
+            }}
+            aria-label="Collapse navigation"
+          >
             <button 
               className="nav-toggle" 
-              onClick={toggleNavigation}
               aria-label="Toggle navigation"
             >
               <span className="hamburger-line"></span>

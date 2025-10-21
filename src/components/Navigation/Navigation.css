@@ -80,6 +80,30 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Make expanded header clickable to collapse */
+.nav-header-clickable {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none; /* Prevent text selection */
+}
+
+.nav-header-clickable:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-header-clickable:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: -2px;
+}
+
+.nav-header-clickable .nav-toggle {
+  pointer-events: none; /* Prevent double-click events */
+}
+
+.nav-header-clickable .company-name {
+  pointer-events: none; /* Prevent text selection issues */
+}
+
 /* Make entire collapsed navigation clickable */
 .nav-collapsed-clickable {
   cursor: pointer;
@@ -321,4 +345,12 @@
 
 [data-theme="dark"] .nav-collapsed-clickable:hover {
   background-color: #21262d;
+}
+
+[data-theme="dark"] .nav-header-clickable:hover {
+  background-color: #21262d;
+}
+
+[data-theme="dark"] .nav-header-clickable:focus {
+  outline-color: rgba(230, 237, 243, 0.5);
 }
