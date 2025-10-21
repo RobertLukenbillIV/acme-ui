@@ -3,6 +3,13 @@ export { default as Navigation } from './components/Navigation';
 export { default as Card } from './components/Card';
 export { default as TabbedCard } from './components/TabbedCard';
 
+// Navigation Components
+export { default as Tabs } from './components/Tabs';
+export { default as Breadcrumb } from './components/Breadcrumb';
+export { default as DropdownMenu } from './components/DropdownMenu';
+export { default as UserMenu } from './components/UserMenu';
+export { default as CommandPalette } from './components/CommandPalette';
+
 // Primitive Components
 export { default as Button } from './components/Button';
 export { default as Avatar } from './components/Avatar';

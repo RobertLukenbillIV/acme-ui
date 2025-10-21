@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '../../src/components/Navigation';
+import Tabs from '../../src/components/Tabs';
+import Breadcrumb from '../../src/components/Breadcrumb';
+import DropdownMenu from '../../src/components/DropdownMenu';
+import UserMenu from '../../src/components/UserMenu';
+import CommandPalette from '../../src/components/CommandPalette';
 import Card from '../../src/components/Card';
+import Button from '../../src/components/Button';
 
 const NavigationPage = () => {
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('overview');
   const sampleLinks = [
     { 
       label: 'Home', 
@@ -244,8 +252,259 @@ const NavigationPage = () => {
             <li><strong>React Hooks:</strong> Uses useState for state management and useEffect for click-outside detection</li>
             <li><strong>CSS Classes:</strong> Follows the .acme- prefix convention with BEM-style naming</li>
             <li><strong>Event Handling:</strong> Proper event propagation control for nested interactions</li>
-            <li><strong>Performance:</strong> Efficient re-renders with proper dependency arrays</li>
           </ul>
+        </Card>
+
+        <Card title="Tabs Component">
+          <p><strong>Features:</strong></p>
+          <ul>
+            <li>Multiple variants: default, pills, underline, vertical</li>
+            <li>Keyboard navigation with arrow keys</li>
+            <li>Closable tabs with onClose callback</li>
+            <li>Disabled tabs support</li>
+            <li>Customizable content and styling</li>
+          </ul>
+          
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4>Default Tabs</h4>
+            <Tabs
+              tabs={[
+                { id: 'overview', label: 'Overview', content: <div style={{ padding: '1rem' }}>Overview content goes here...</div> },
+                { id: 'features', label: 'Features', content: <div style={{ padding: '1rem' }}>Feature details and specifications...</div> },
+                { id: 'examples', label: 'Examples', content: <div style={{ padding: '1rem' }}>Code examples and demos...</div> },
+                { id: 'api', label: 'API Reference', content: <div style={{ padding: '1rem' }}>Complete API documentation...</div>, disabled: true }
+              ]}
+              activeTab={selectedTab}
+              onTabChange={setSelectedTab}
+            />
+          </div>
+
+          <div style={{ marginTop: '2rem' }}>
+            <h4>Pills Variant</h4>
+            <Tabs
+              variant="pills"
+              tabs={[
+                { id: 'all', label: 'All Items' },
+                { id: 'active', label: 'Active' },
+                { id: 'archived', label: 'Archived' }
+              ]}
+              activeTab="all"
+            />
+          </div>
+
+          <div style={{ marginTop: '2rem' }}>
+            <h4>Underline Variant</h4>
+            <Tabs
+              variant="underline"
+              tabs={[
+                { id: 'code', label: 'Code' },
+                { id: 'preview', label: 'Preview' },
+                { id: 'console', label: 'Console' }
+              ]}
+              activeTab="code"
+            />
+          </div>
+        </Card>
+
+        <Card title="Breadcrumb Component">
+          <p><strong>Features:</strong></p>
+          <ul>
+            <li>Hierarchical navigation trail</li>
+            <li>Home icon integration</li>
+            <li>Separator variants: arrows, slashes, dots</li>
+            <li>Truncation with maxItems</li>
+            <li>Responsive design</li>
+          </ul>
+          
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4>Arrow Separators (Default)</h4>
+            <Breadcrumb
+              items={[
+                { label: 'Components', href: '/components' },
+                { label: 'Navigation', href: '/navigation' },
+                { label: 'Breadcrumb' }
+              ]}
+            />
+          </div>
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4>Slash Separators</h4>
+            <Breadcrumb
+              variant="slash"
+              items={[
+                { label: 'Acme UI', href: '/' },
+                { label: 'Documentation', href: '/docs' },
+                { label: 'Components', href: '/components' },
+                { label: 'Navigation Components' }
+              ]}
+            />
+          </div>
+
+          <div style={{ marginTop: '1.5rem' }}>
+            <h4>Dot Separators with Truncation</h4>
+            <Breadcrumb
+              variant="dot"
+              maxItems={3}
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Products', href: '/products' },
+                { label: 'Electronics', href: '/electronics' },
+                { label: 'Computers', href: '/computers' },
+                { label: 'Laptops', href: '/laptops' },
+                { label: 'Gaming Laptops' }
+              ]}
+            />
+          </div>
+        </Card>
+
+        <Card title="Dropdown Menu Component">
+          <p><strong>Features:</strong></p>
+          <ul>
+            <li>Flexible trigger and menu items</li>
+            <li>Multiple placement options</li>
+            <li>Keyboard navigation (arrows, enter, escape)</li>
+            <li>Icons, shortcuts, and separators</li>
+            <li>Click-outside to close</li>
+          </ul>
+          
+          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <DropdownMenu
+              trigger={<Button>Actions Menu</Button>}
+              items={[
+                { label: 'Edit', icon: '✏️', shortcut: '⌘E', onClick: () => alert('Edit clicked') },
+                { label: 'Duplicate', icon: '📄', shortcut: '⌘D', onClick: () => alert('Duplicate clicked') },
+                { type: 'separator' },
+                { label: 'Archive', icon: '📦', onClick: () => alert('Archive clicked') },
+                { label: 'Delete', icon: '🗑️', variant: 'danger', shortcut: '⌫', onClick: () => alert('Delete clicked') }
+              ]}
+              placement="bottom-start"
+            />
+
+            <DropdownMenu
+              trigger={<Button variant="secondary">More Options</Button>}
+              items={[
+                { label: 'Share', icon: '🔗', children: [
+                  { label: 'Copy Link', icon: '📋', onClick: () => alert('Copy link') },
+                  { label: 'Email', icon: '📧', onClick: () => alert('Email') },
+                  { label: 'Social Media', icon: '📱', onClick: () => alert('Social') }
+                ]},
+                { label: 'Export', icon: '💾', children: [
+                  { label: 'PDF', icon: '📄', onClick: () => alert('Export PDF') },
+                  { label: 'CSV', icon: '📊', onClick: () => alert('Export CSV') },
+                  { label: 'JSON', icon: '{}', onClick: () => alert('Export JSON') }
+                ]},
+                { type: 'separator' },
+                { label: 'Settings', icon: '⚙️', onClick: () => alert('Settings') }
+              ]}
+              placement="bottom-end"
+            />
+          </div>
+        </Card>
+
+        <Card title="User Menu Component">
+          <p><strong>Features:</strong></p>
+          <ul>
+            <li>User profile display with avatar</li>
+            <li>Status indicators (online, busy, away, offline)</li>
+            <li>Quick actions (Profile, Settings, Sign Out)</li>
+            <li>Custom actions support</li>
+            <li>Role and organization display</li>
+          </ul>
+          
+          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <UserMenu
+              user={{
+                name: 'Alice Johnson',
+                email: 'alice@acme-ui.com',
+                avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face',
+                status: 'online',
+                role: 'Design Lead',
+                organization: 'Acme UI'
+              }}
+              onProfileClick={() => alert('View Profile')}
+              onSettingsClick={() => alert('Open Settings')}
+              onSignOutClick={() => alert('Sign Out')}
+              onStatusChange={(status) => alert(`Status changed to ${status}`)}
+              customActions={[
+                { label: 'My Projects', icon: '📁', onClick: () => alert('My Projects') },
+                { label: 'Team Dashboard', icon: '👥', onClick: () => alert('Team Dashboard') }
+              ]}
+            />
+
+            <UserMenu
+              user={{
+                name: 'Bob Wilson',
+                email: 'bob@company.com',
+                status: 'busy',
+                role: 'Developer'
+              }}
+              showStatus={false}
+              showQuickActions={false}
+              onSignOutClick={() => alert('Sign Out')}
+              customActions={[
+                { label: 'Admin Panel', icon: '🛠️', onClick: () => alert('Admin Panel') }
+              ]}
+            />
+          </div>
+        </Card>
+
+        <Card title="Command Palette Component">
+          <p><strong>Features:</strong></p>
+          <ul>
+            <li>Fuzzy search through commands</li>
+            <li>Keyboard navigation and shortcuts</li>
+            <li>Command categories and grouping</li>
+            <li>Recent commands tracking</li>
+            <li>Modal overlay with backdrop blur</li>
+          </ul>
+          
+          <div style={{ marginTop: '1.5rem' }}>
+            <Button onClick={() => setCommandPaletteOpen(true)}>
+              Open Command Palette (⌘K)
+            </Button>
+            <p style={{ fontSize: '0.9rem', color: '#666', marginTop: '0.5rem' }}>
+              Try searching for "file", "search", "toggle", or any command...
+            </p>
+          </div>
+
+          <CommandPalette
+            isOpen={commandPaletteOpen}
+            onClose={() => setCommandPaletteOpen(false)}
+            commands={[
+              {
+                id: 'new-component',
+                label: 'Create New Component',
+                category: 'file',
+                shortcut: '⌘⇧N',
+                description: 'Generate a new React component',
+                action: () => alert('Creating new component...')
+              },
+              {
+                id: 'open-settings',
+                label: 'Open Settings',
+                category: 'tools',
+                shortcut: '⌘,',
+                description: 'Open application settings',
+                action: () => alert('Opening settings...')
+              },
+              {
+                id: 'toggle-theme',
+                label: 'Toggle Dark Mode',
+                category: 'view',
+                shortcut: '⌘⇧D',
+                description: 'Switch between light and dark themes',
+                action: () => alert('Toggling theme...')
+              }
+            ]}
+            recentCommands={[
+              {
+                id: 'recent-1',
+                label: 'Search Documentation',
+                category: 'search',
+                description: 'Search through component docs'
+              }
+            ]}
+          />
         </Card>
 
         <Card title="Navigation Props API">
