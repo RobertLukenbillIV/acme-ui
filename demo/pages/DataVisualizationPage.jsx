@@ -142,9 +142,9 @@ const DataVisualizationPage = () => {
         <h2>Charts</h2>
         <p>Visualize quantitative data with various chart types including bar, line, pie, and doughnut charts.</p>
         
-        <div className="demo-grid">
+        <div className="component-demo-grid">
           <div className="demo-item">
-            <h3>Bar Chart</h3>
+            <h4>Bar Chart</h4>
             <Chart 
               type="bar" 
               data={barChartData} 
@@ -156,19 +156,18 @@ const DataVisualizationPage = () => {
           </div>
 
           <div className="demo-item">
-            <h3>Line Chart</h3>
+            <h4>Line Chart</h4>
             <Chart 
               type="line" 
               data={lineChartData} 
               title="Weekly Growth"
-              color="success"
               animate={true}
               height={300}
             />
           </div>
 
           <div className="demo-item">
-            <h3>Pie Chart</h3>
+            <h4>Pie Chart</h4>
             <Chart 
               type="pie" 
               data={pieChartData} 
@@ -180,7 +179,7 @@ const DataVisualizationPage = () => {
           </div>
 
           <div className="demo-item">
-            <h3>Doughnut Chart</h3>
+            <h4>Doughnut Chart</h4>
             <Chart 
               type="doughnut" 
               data={pieChartData} 
@@ -198,7 +197,7 @@ const DataVisualizationPage = () => {
         <h2>Stat / KPI Cards</h2>
         <p>Display key performance indicators and metrics in compact, visually appealing cards.</p>
         
-        <div className="demo-grid">
+        <div className="component-demo-grid">
           <StatCard
             title="Total Revenue"
             value="$125,430"
@@ -233,7 +232,7 @@ const DataVisualizationPage = () => {
         </div>
 
         <h3>Stat Card Variants</h3>
-        <div className="demo-grid">
+        <div className="component-demo-grid">
           <StatCard
             title="System Status"
             value="Online"
@@ -266,9 +265,9 @@ const DataVisualizationPage = () => {
         <h2>Progress & Gauge Indicators</h2>
         <p>Show completion status, thresholds, and progress with various visual styles.</p>
         
-        <div className="demo-grid">
+        <div className="component-demo-grid">
           <div className="demo-item">
-            <h3>Linear Progress</h3>
+            <h4>Linear Progress</h4>
             <ProgressBar
               value={75}
               label="Project Completion"
@@ -297,7 +296,7 @@ const DataVisualizationPage = () => {
           </div>
 
           <div className="demo-item">
-            <h3>Circular Progress</h3>
+            <h4>Circular Progress</h4>
             <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
               <CircularProgress
                 value={65}
@@ -324,7 +323,7 @@ const DataVisualizationPage = () => {
           </div>
 
           <div className="demo-item">
-            <h3>Gauge Indicators</h3>
+            <h4>Gauge Indicators</h4>
             <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
               <Gauge
                 value={78}
@@ -356,9 +355,9 @@ const DataVisualizationPage = () => {
         <h2>Timeline Components</h2>
         <p>Display chronological events, processes, and workflows in various layouts.</p>
         
-        <div className="demo-grid">
+        <div className="component-demo-grid">
           <div className="demo-item">
-            <h3>Vertical Timeline</h3>
+            <h4>Vertical Timeline</h4>
             <Timeline
               items={timelineData}
               variant="vertical"
@@ -371,7 +370,7 @@ const DataVisualizationPage = () => {
           </div>
 
           <div className="demo-item">
-            <h3>Process Timeline</h3>
+            <h4>Process Timeline</h4>
             <Timeline.Process
               steps={processSteps}
               currentStep={2}

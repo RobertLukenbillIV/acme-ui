@@ -6,6 +6,7 @@ const Chart = ({
   data = [],
   width = '100%',
   height = 300,
+  size = null, // For pie/doughnut charts
   title = null,
   colors = [
     '#3498db', '#e74c3c', '#f39c12', '#27ae60', '#9b59b6',
@@ -18,6 +19,12 @@ const Chart = ({
   className = '',
   ...props
 }) => {
+  // Filter out non-DOM props to prevent React warnings
+  const { 
+    showValue, // Remove showValue if it exists
+    color, // Remove custom color prop
+    ...domProps 
+  } = props;
   // Process data for chart rendering
   const processedData = useMemo(() => {
     if (!Array.isArray(data) || data.length === 0) return [];
@@ -240,17 +247,28 @@ const Chart = ({
     );
   };
 
+  // Calculate chart dimensions
+  const chartStyle = {
+    width,
+    maxWidth: '100%',
+    boxSizing: 'border-box'
+  };
+  
+  // For pie/doughnut charts, use size if provided, otherwise use height
+  if (type === 'pie' || type === 'doughnut') {
+    const chartSize = size || Math.min(parseInt(height), 400);
+    chartStyle.height = `${chartSize}px`;
+    chartStyle.width = '100%';
+  } else {
+    chartStyle.height = height;
+  }
+
   if (!data || data.length === 0) {
     return (
       <div 
         className={`acme-chart empty ${className}`} 
-        style={{ 
-          width, 
-          height,
-          maxWidth: '100%',
-          boxSizing: 'border-box'
-        }} 
-        {...props}
+        style={chartStyle} 
+        {...domProps}
       >
         <div className="chart-empty-state">
           <div className="empty-icon">📊</div>
@@ -263,13 +281,8 @@ const Chart = ({
   return (
     <div 
       className={`acme-chart ${type} ${className}`} 
-      style={{ 
-        width, 
-        height,
-        maxWidth: '100%',
-        boxSizing: 'border-box'
-      }} 
-      {...props}
+      style={chartStyle} 
+      {...domProps}
     >
       {title && <h3 className="chart-title">{title}</h3>}
       <div className="chart-container">
