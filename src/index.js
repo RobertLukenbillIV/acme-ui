@@ -46,6 +46,12 @@ export { default as Footnote } from './components/Footnote';
 export { default as Forum } from './components/Forum';
 export { default as ImageGallery } from './components/ImageGallery';
 
+// Data Visualization Components
+export { default as Chart } from './components/Chart';
+export { default as StatCard } from './components/StatCard';
+export { default as ProgressBar } from './components/ProgressBar';
+export { default as Timeline } from './components/Timeline';
+
 // Authentication & Utility Components
 export { default as AuthForm } from './components/AuthForm';
 export { default as UserAvatarMenu } from './components/UserAvatarMenu';

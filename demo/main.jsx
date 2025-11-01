@@ -21,6 +21,7 @@ import PrimitivesPage from './pages/PrimitivesPage.jsx';
 import NavigationPage from './pages/NavigationPage.jsx';
 import TypographyPage from './pages/TypographyPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
+import DataVisualizationPage from './pages/DataVisualizationPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -43,6 +44,7 @@ const navigationLinks = [
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Navigation', href: '/navigation' },
+      { label: 'Data Visualization', href: '/data-visualization' },
       { label: 'Community', href: '/forum' }
     ]
   },
@@ -192,6 +194,7 @@ function AppContent() {
           <Route path="/navigation" element={<NavigationPage />} />
           <Route path="/typography" element={<TypographyPage />} />
           <Route path="/ui-components" element={<UIComponentsPage />} />
+          <Route path="/data-visualization" element={<DataVisualizationPage />} />
         </Routes>
       </main>
       
