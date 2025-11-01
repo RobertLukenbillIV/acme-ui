@@ -115,6 +115,21 @@
   --acme-color-surface-hover: var(--acme-color-gray-100);
   --acme-color-surface-active: var(--acme-color-gray-200);
   --acme-color-surface-disabled: var(--acme-color-gray-100);
+
+  /* Common aliases for convenience */
+  --acme-color-surface: var(--acme-color-surface-primary);
+  --acme-color-border: var(--acme-color-border-primary);
+  --acme-color-primary: var(--acme-color-primary-600);
+  --acme-color-primary-hover: var(--acme-color-primary-700);
+  --acme-color-primary-text: #ffffff;
+  --acme-color-primary-alpha: rgba(59, 130, 246, 0.1);
+  --acme-color-success: var(--acme-color-success-600);
+  --acme-color-warning: var(--acme-color-warning-600);
+  --acme-color-error: var(--acme-color-error-600);
+  --acme-color-error-surface: var(--acme-color-error-50);
+  --acme-color-error-border: var(--acme-color-error-200);
+  --acme-color-error-text: var(--acme-color-error-700);
+  --acme-color-error-alpha: rgba(239, 68, 68, 0.1);
 }
 
 /* Dark Theme Overrides */
@@ -150,6 +165,21 @@
   --acme-color-surface-hover: var(--acme-color-gray-700);
   --acme-color-surface-active: var(--acme-color-gray-600);
   --acme-color-surface-disabled: var(--acme-color-gray-800);
+
+  /* Common aliases for convenience */
+  --acme-color-surface: var(--acme-color-surface-primary);
+  --acme-color-border: var(--acme-color-border-primary);
+  --acme-color-primary: var(--acme-color-primary-500);
+  --acme-color-primary-hover: var(--acme-color-primary-400);
+  --acme-color-primary-text: #ffffff;
+  --acme-color-primary-alpha: rgba(59, 130, 246, 0.2);
+  --acme-color-success: var(--acme-color-success-500);
+  --acme-color-warning: var(--acme-color-warning-500);
+  --acme-color-error: var(--acme-color-error-500);
+  --acme-color-error-surface: var(--acme-color-error-900);
+  --acme-color-error-border: var(--acme-color-error-700);
+  --acme-color-error-text: var(--acme-color-error-300);
+  --acme-color-error-alpha: rgba(239, 68, 68, 0.2);
 }
 
 /* Utility Classes for Common Color Usage */

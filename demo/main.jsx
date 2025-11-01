@@ -8,6 +8,7 @@ import Footnote from '../src/components/Footnote';
 import ImageGallery from '../src/components/ImageGallery';
 import Hero from '../src/components/Hero';
 import Forum from '../src/components/Forum';
+import ThemeToggle from '../src/components/ThemeToggle';
 import HomePage from './pages/HomePage.jsx';
 import StaticHeroPage from './pages/StaticHeroPage.jsx';
 import StickyHeroPage from './pages/StickyHeroPage.jsx';
@@ -19,6 +20,7 @@ import UIComponentsPage from './pages/UIComponentsPage.jsx';
 import PrimitivesPage from './pages/PrimitivesPage.jsx';
 import NavigationPage from './pages/NavigationPage.jsx';
 import TypographyPage from './pages/TypographyPage.jsx';
+import AuthPage from './pages/AuthPage.jsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -37,6 +39,7 @@ const navigationLinks = [
     children: [
       { label: 'Primitives', href: '/primitives' },
       { label: 'Typography', href: '/typography' },
+      { label: 'Authentication', href: '/auth' },
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Navigation', href: '/navigation' },
@@ -178,6 +181,8 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/primitives" element={<PrimitivesPage />} />
+          <Route path="/typography" element={<TypographyPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/static-hero" element={<StaticHeroPage />} />
           <Route path="/sticky-hero" element={<StickyHeroPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
@@ -209,39 +214,22 @@ function AppContent() {
             }}>
               Built with React for modern web applications. Open source and customizable.
             </p>
-            <button 
-              onClick={toggleTheme}
-              style={{
-                // Original theme colors for dark mode toggle
-                background: isDarkMode ? '#64b5f6' : '#3498db',
-                color: '#ffffff',
-                border: isDarkMode ? '1px solid rgba(100, 181, 246, 0.3)' : '1px solid rgba(52, 152, 219, 0.3)',
-                padding: '0.75rem 1.5rem',
-                borderRadius: '6px',
-                fontSize: '0.9rem',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                margin: '0 auto',
-                boxShadow: 'none'
-              }}
-              onMouseOver={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-                e.target.style.backgroundColor = isDarkMode ? 'rgba(100, 181, 246, 0.9)' : 'rgba(52, 152, 219, 0.9)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
-                e.target.style.backgroundColor = isDarkMode ? '#64b5f6' : '#3498db';
-              }}
-            >
-              <span>{isDarkMode ? '☀️' : '🌙'}</span>
-              Switch to {isDarkMode ? 'Light' : 'Dark'} Mode
-            </button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <ThemeToggle
+                variant="button"
+                size="medium"
+                showLabel={true}
+                onChange={(theme, effectiveTheme) => {
+                  if (effectiveTheme === 'dark' && !isDarkMode) {
+                    toggleTheme();
+                  } else if (effectiveTheme === 'light' && isDarkMode) {
+                    toggleTheme();
+                  }
+                }}
+                defaultTheme={isDarkMode ? 'dark' : 'light'}
+                storageKey="darkMode"
+              />
+            </div>
           </div>
         }
         socialLinks={[

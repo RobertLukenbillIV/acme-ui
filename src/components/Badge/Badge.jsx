@@ -26,8 +26,8 @@ const Badge = ({
 
   const content = renderContent();
   
-  // Don't render if no content and not a dot
-  if (!content && !dot) return null;
+  // Don't render if no content and not a dot (but allow 0 to be rendered)
+  if ((content === null || content === undefined || content === '') && !dot) return null;
 
   const badgeClasses = [
     'acme-badge',

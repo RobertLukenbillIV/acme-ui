@@ -106,6 +106,20 @@
   --acme-link-decoration: underline;
   --acme-link-decoration-thickness: 1px;
   --acme-link-underline-offset: 2px;
+
+  /* Common aliases for backward compatibility */
+  --acme-text-weight-normal: var(--acme-font-normal);
+  --acme-text-weight-medium: var(--acme-font-medium);
+  --acme-text-weight-semibold: var(--acme-font-semibold);
+  --acme-text-weight-bold: var(--acme-font-bold);
+  --acme-text-size-xs: var(--acme-text-xs);
+  --acme-text-size-sm: var(--acme-text-sm);
+  --acme-text-size-base: var(--acme-text-base);
+  --acme-text-size-lg: var(--acme-text-lg);
+  --acme-text-size-xl: var(--acme-text-xl);
+  --acme-text-line-height-tight: var(--acme-leading-tight);
+  --acme-text-line-height-normal: var(--acme-leading-normal);
+  --acme-text-font-family-heading: var(--acme-font-sans);
 }
 
 /* Responsive Typography Scaling */

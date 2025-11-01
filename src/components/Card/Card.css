@@ -1,9 +1,17 @@
 .acme-card {
+  position: relative;
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  z-index: 1; /* Base z-index for stacking */
+}
+
+/* Special styling for cards containing dropdowns */
+.acme-card.has-dropdown {
+  overflow: visible;
+  z-index: 10; /* Higher z-index when containing dropdowns */
 }
 
 .acme-card:hover {

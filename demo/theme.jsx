@@ -10,12 +10,17 @@ export const ThemeProvider = ({ children }) => {
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode) {
       try {
-        setIsDarkMode(JSON.parse(savedMode));
+        // Try to parse as JSON first (for boolean values)
+        const parsed = JSON.parse(savedMode);
+        if (typeof parsed === 'boolean') {
+          setIsDarkMode(parsed);
+        } else {
+          // Handle string values like "dark" or "light"
+          setIsDarkMode(savedMode === 'dark');
+        }
       } catch (error) {
-        // Handle legacy string values or invalid JSON
-        console.warn('Invalid theme data in localStorage, resetting to light mode');
-        setIsDarkMode(false);
-        localStorage.removeItem('darkMode');
+        // Handle string values or invalid JSON
+        setIsDarkMode(savedMode === 'dark' || savedMode === 'true');
       }
     }
   }, []);
