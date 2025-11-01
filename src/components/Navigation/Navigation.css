@@ -205,10 +205,30 @@
   text-decoration: none;
   transition: background-color 0.2s ease;
   flex: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
 }
 
 .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Expandable nav link button styling */
+.nav-link.expandable-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+}
+
+.nav-link-text {
+  flex: 1;
+  text-align: left;
 }
 
 .submenu-toggle {
@@ -319,6 +339,14 @@
 }
 
 [data-theme="dark"] .nav-link:hover {
+  background-color: #21262d;
+}
+
+[data-theme="dark"] .nav-link.expandable-link {
+  color: #e6edf3;
+}
+
+[data-theme="dark"] .nav-link.expandable-link:hover {
   background-color: #21262d;
 }
 

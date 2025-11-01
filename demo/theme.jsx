@@ -9,7 +9,14 @@ export const ThemeProvider = ({ children }) => {
     // Check for saved preference or default to light mode
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode) {
-      setIsDarkMode(JSON.parse(savedMode));
+      try {
+        setIsDarkMode(JSON.parse(savedMode));
+      } catch (error) {
+        // Handle legacy string values or invalid JSON
+        console.warn('Invalid theme data in localStorage, resetting to light mode');
+        setIsDarkMode(false);
+        localStorage.removeItem('darkMode');
+      }
     }
   }, []);
 
