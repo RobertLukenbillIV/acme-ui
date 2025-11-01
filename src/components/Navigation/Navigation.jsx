@@ -50,23 +50,25 @@ const Navigation = ({
           return (
             <li key={linkKey} className={`nav-link-item ${hasChildren ? 'has-children' : ''} ${openSubmenus[linkKey] ? 'open' : ''}`}>
               <div className="nav-link-wrapper">
-                <a 
-                  href={link.href || '#'} 
-                  className="nav-link"
-                  onClick={link.onClick}
-                >
-                  {link.label}
-                </a>
-                {hasChildren && (
+                {hasChildren ? (
                   <button 
-                    className="submenu-toggle"
+                    className="nav-link expandable-link"
                     onClick={(e) => toggleSubmenu(linkKey, e)}
                     aria-label={`Toggle ${link.label} submenu`}
                   >
+                    <span className="nav-link-text">{link.label}</span>
                     <span className={`arrow ${openSubmenus[linkKey] ? 'open' : ''}`}>
                       {position === 'top' ? '▼' : '▶'}
                     </span>
                   </button>
+                ) : (
+                  <a 
+                    href={link.href || '#'} 
+                    className="nav-link"
+                    onClick={link.onClick}
+                  >
+                    {link.label}
+                  </a>
                 )}
               </div>
               {hasChildren && openSubmenus[linkKey] && (
