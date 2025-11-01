@@ -151,7 +151,7 @@ const DataVisualizationPage = () => {
               title="Monthly Sales"
               showLegend={true}
               animate={true}
-              height={300}
+              height={350}
             />
           </div>
 
@@ -162,7 +162,7 @@ const DataVisualizationPage = () => {
               data={lineChartData} 
               title="Weekly Growth"
               animate={true}
-              height={300}
+              height={350}
             />
           </div>
 

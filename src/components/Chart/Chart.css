@@ -11,7 +11,7 @@
   max-width: 100%;
   box-sizing: border-box;
   contain: layout style; /* CSS containment for better isolation */
-  overflow: hidden; /* Prevent content overflow */
+  overflow: hidden; /* Keep content contained within card */
 }
 
 .chart-title {
@@ -32,11 +32,13 @@
 .chart-content {
   flex: 1;
   position: relative;
-  min-height: 200px;
-  overflow: hidden; /* Prevent content from escaping */
+  min-height: 280px; /* Increased height for better proportions */
+  overflow: visible; /* Allow labels to show */
   display: flex;
-  align-items: center;
+  align-items: stretch; /* Stretch to full height */
   justify-content: center;
+  padding-bottom: 3rem; /* Space for labels */
+  box-sizing: border-box;
 }
 
 /* Empty State */
@@ -71,17 +73,20 @@
   align-items: flex-end;
   justify-content: space-around;
   height: 100%;
-  padding: 1rem 0;
+  padding: 1rem 0 2rem 0;
   gap: 0.5rem;
+  box-sizing: border-box;
 }
 
 .bar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
   flex: 1;
   max-width: 60px;
-  height: 100%;
+  height: calc(100% - 3rem); /* Reserve space for labels */
+  position: relative;
 }
 
 .bar {
@@ -91,6 +96,7 @@
   transition: all 0.3s ease;
   position: relative;
   margin-bottom: 0.5rem;
+  /* Height will be set via inline style based on percentage */
 }
 
 .bar.animated {
@@ -108,7 +114,10 @@
   color: var(--text-secondary, #7f8c8d);
   text-align: center;
   margin-top: 0.5rem;
-  word-break: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .bar-value {
@@ -117,6 +126,7 @@
   color: var(--text-primary, #2c3e50);
   text-align: center;
   margin-top: 0.25rem;
+  white-space: nowrap;
 }
 
 @keyframes bar-grow {
@@ -133,7 +143,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 1rem 1rem 3rem 1rem; /* Bottom padding for labels */
   box-sizing: border-box;
 }
 
@@ -160,7 +170,7 @@
 
 .line-labels {
   position: absolute;
-  bottom: 0;
+  bottom: 0.5rem;
   left: 1rem;
   right: 1rem;
   display: flex;
@@ -168,11 +178,11 @@
 }
 
 .line-label {
-  position: absolute;
-  transform: translateX(-50%);
   font-size: 0.75rem;
   color: var(--text-secondary, #7f8c8d);
-  margin-top: 0.5rem;
+  white-space: nowrap;
+  text-align: center;
+  flex: 1;
 }
 
 @keyframes line-draw {
@@ -268,6 +278,12 @@
 .acme-chart.pie .chart-content,
 .acme-chart.doughnut .chart-content {
   flex: 1;
+  padding-bottom: 0; /* Remove extra padding for pie charts */
+}
+
+.acme-chart.bar .chart-content,
+.acme-chart.line .chart-content {
+  padding-bottom: 4rem; /* Keep extra padding for bar and line charts */
 }
 
 .acme-chart.pie .acme-chart-legend,

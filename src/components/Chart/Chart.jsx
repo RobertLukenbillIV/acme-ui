@@ -74,11 +74,11 @@ const Chart = ({
             }}
             title={`${item.label}: ${item.value}`}
           />
-          {showLabels && (
-            <div className="bar-label">{item.label}</div>
-          )}
           {showValues && (
             <div className="bar-value">{item.value}</div>
+          )}
+          {showLabels && (
+            <div className="bar-label">{item.label}</div>
           )}
         </div>
       ))}
@@ -88,9 +88,14 @@ const Chart = ({
   const renderLineChart = () => {
     if (processedData.length < 2) return <div className="chart-error">Line chart requires at least 2 data points</div>;
     
+    // Add padding to prevent clipping of circles at edges
+    const padding = 5; // 5% padding on each side
+    const chartWidth = 100 - (padding * 2);
+    const chartHeight = 100 - (padding * 2);
+    
     const points = processedData.map((item, index) => {
-      const x = (index / (processedData.length - 1)) * 100;
-      const y = 100 - item.percentage;
+      const x = padding + (index / (processedData.length - 1)) * chartWidth;
+      const y = padding + (100 - item.percentage) * (chartHeight / 100);
       return `${x},${y}`;
     }).join(' ');
 
@@ -100,19 +105,19 @@ const Chart = ({
           <polyline
             fill="none"
             stroke={colors[0]}
-            strokeWidth="2"
+            strokeWidth="1.5"
             points={points}
             className={animate ? 'animated-line' : ''}
           />
           {processedData.map((item, index) => {
-            const x = (index / (processedData.length - 1)) * 100;
-            const y = 100 - item.percentage;
+            const x = padding + (index / (processedData.length - 1)) * chartWidth;
+            const y = padding + (100 - item.percentage) * (chartHeight / 100);
             return (
               <circle
                 key={index}
                 cx={x}
                 cy={y}
-                r="3"
+                r="2.5"
                 fill={item.color}
                 className={animate ? 'animated-dot' : ''}
                 style={{ animationDelay: animate ? `${index * 0.1}s` : '0s' }}
@@ -125,13 +130,7 @@ const Chart = ({
         {showLabels && (
           <div className="line-labels">
             {processedData.map((item, index) => (
-              <div 
-                key={index} 
-                className="line-label" 
-                style={{ 
-                  left: processedData.length === 1 ? '50%' : `${Math.min(95, (index / (processedData.length - 1)) * 95)}%`
-                }}
-              >
+              <div key={index} className="line-label">
                 {item.label}
               </div>
             ))}
