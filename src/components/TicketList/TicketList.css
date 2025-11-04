@@ -1,0 +1,225 @@
+/* Ticket List Component Styles */
+.acme-ticket-list {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ticket-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticket-item {
+  background: var(--card-background, white);
+  border: 1px solid var(--border-color, #e1e8ed);
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ticket-item:hover {
+  border-color: var(--primary-color, #3498db);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.ticket-item:focus {
+  outline: 2px solid var(--primary-color, #3498db);
+  outline-offset: 2px;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.ticket-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #2c3e50);
+  flex: 1;
+}
+
+.ticket-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+/* Priority Colors */
+.priority-critical {
+  background-color: #fee;
+  color: #c00;
+}
+
+.priority-high {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.priority-medium {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.priority-low {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Status Colors */
+.status-open {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-in-progress {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-resolved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-closed {
+  background-color: #e0e0e0;
+  color: #616161;
+}
+
+.ticket-description {
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary, #7f8c8d);
+  line-height: 1.6;
+}
+
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #7f8c8d);
+}
+
+.ticket-id {
+  font-family: monospace;
+  background: var(--background-secondary, #f5f5f5);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.ticket-date {
+  font-size: 0.8rem;
+}
+
+/* Pagination Info */
+.pagination-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--background-secondary, #f5f5f5);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #7f8c8d);
+}
+
+/* Loading State */
+.acme-ticket-list.loading {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  font-size: 1.25rem;
+  color: var(--text-secondary, #7f8c8d);
+}
+
+/* Error State */
+.acme-ticket-list.error {
+  padding: 2rem;
+}
+
+.error-message {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #c00;
+}
+
+/* Empty State */
+.acme-ticket-list.empty {
+  padding: 3rem 2rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary, #7f8c8d);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .ticket-item {
+  background: var(--card-background, #21262d);
+  border-color: var(--border-color, #30363d);
+}
+
+[data-theme="dark"] .ticket-title {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .ticket-description {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .ticket-footer {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .ticket-id {
+  background: var(--background-secondary, #161b22);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ticket-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ticket-badges {
+    margin-top: 0.5rem;
+  }
+
+  .pagination-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

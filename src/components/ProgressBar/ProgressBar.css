@@ -1,0 +1,337 @@
+/* ProgressBar Component Styles */
+.acme-progress-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: inherit;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.progress-label {
+  font-weight: 500;
+  color: var(--text-primary, #2c3e50);
+}
+
+.progress-percentage {
+  font-weight: 600;
+  color: var(--text-secondary, #7f8c8d);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--progress-background, #e9ecef);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--primary-color, #3498db);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+  position: relative;
+}
+
+/* Sizes */
+.acme-progress-bar.small .progress-track {
+  height: 4px;
+}
+
+.acme-progress-bar.small .progress-header {
+  font-size: 0.75rem;
+}
+
+.acme-progress-bar.large .progress-track {
+  height: 12px;
+}
+
+.acme-progress-bar.large .progress-header {
+  font-size: 1rem;
+}
+
+/* Colors */
+.acme-progress-bar.primary .progress-fill {
+  background-color: var(--primary-color, #3498db);
+}
+
+.acme-progress-bar.success .progress-fill {
+  background-color: var(--success-color, #27ae60);
+}
+
+.acme-progress-bar.warning .progress-fill {
+  background-color: var(--warning-color, #f39c12);
+}
+
+.acme-progress-bar.danger .progress-fill {
+  background-color: var(--danger-color, #e74c3c);
+}
+
+.acme-progress-bar.info .progress-fill {
+  background-color: var(--info-color, #17a2b8);
+}
+
+/* Variants */
+.acme-progress-bar.striped .progress-fill {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.acme-progress-bar.animated .progress-fill {
+  animation: progress-stripes 1s linear infinite;
+}
+
+.acme-progress-bar.gradient .progress-fill {
+  background: linear-gradient(90deg, var(--primary-color, #3498db), var(--primary-color-light, #5dade2));
+}
+
+@keyframes progress-stripes {
+  0% {
+    background-position-x: 1rem;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+
+/* Circular Progress Styles */
+.acme-circular-progress {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress-svg {
+  transform: rotate(-90deg);
+}
+
+.progress-background {
+  color: var(--progress-background, #e9ecef);
+}
+
+.progress-circle {
+  transition: stroke-dashoffset 0.6s ease;
+  color: var(--primary-color, #3498db);
+}
+
+.acme-circular-progress.animated .progress-circle {
+  animation: circular-progress-rotate 2s ease-in-out;
+}
+
+.circular-progress-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.circular-progress-value {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-primary, #2c3e50);
+}
+
+/* Circular Progress Colors */
+.acme-circular-progress.primary .progress-circle {
+  color: var(--primary-color, #3498db);
+}
+
+.acme-circular-progress.success .progress-circle {
+  color: var(--success-color, #27ae60);
+}
+
+.acme-circular-progress.warning .progress-circle {
+  color: var(--warning-color, #f39c12);
+}
+
+.acme-circular-progress.danger .progress-circle {
+  color: var(--danger-color, #e74c3c);
+}
+
+.acme-circular-progress.info .progress-circle {
+  color: var(--info-color, #17a2b8);
+}
+
+@keyframes circular-progress-rotate {
+  0% {
+    stroke-dashoffset: 251.2; /* Full circle circumference for typical radius */
+  }
+  100% {
+    stroke-dashoffset: var(--final-offset);
+  }
+}
+
+/* Gauge Styles */
+.acme-gauge {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.gauge-background {
+  color: var(--progress-background, #e9ecef);
+}
+
+.gauge-fill {
+  color: var(--primary-color, #3498db);
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.acme-gauge.animated .gauge-fill {
+  animation: gauge-fill 1.5s ease-out;
+}
+
+.gauge-scale line {
+  color: var(--text-secondary, #7f8c8d);
+}
+
+.gauge-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 20%; /* Adjust positioning for arc gauge */
+}
+
+.gauge-value {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary, #2c3e50);
+}
+
+/* Gauge Colors */
+.acme-gauge.primary .gauge-fill {
+  color: var(--primary-color, #3498db);
+}
+
+.acme-gauge.success .gauge-fill {
+  color: var(--success-color, #27ae60);
+}
+
+.acme-gauge.warning .gauge-fill {
+  color: var(--warning-color, #f39c12);
+}
+
+.acme-gauge.danger .gauge-fill {
+  color: var(--danger-color, #e74c3c);
+}
+
+.acme-gauge.info .gauge-fill {
+  color: var(--info-color, #17a2b8);
+}
+
+@keyframes gauge-fill {
+  0% {
+    stroke-dasharray: 0 1000;
+  }
+  100% {
+    stroke-dasharray: var(--final-dash) 1000;
+  }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .progress-label {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .progress-percentage {
+  color: var(--text-secondary, #8b949e);
+}
+
+[data-theme="dark"] .progress-track {
+  background-color: var(--progress-background, #30363d);
+}
+
+[data-theme="dark"] .progress-background {
+  color: var(--progress-background, #30363d);
+}
+
+[data-theme="dark"] .circular-progress-value {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .gauge-value {
+  color: var(--text-primary, #f0f6fc);
+}
+
+[data-theme="dark"] .gauge-scale line {
+  color: var(--text-secondary, #8b949e);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .progress-header {
+    font-size: 0.8rem;
+  }
+  
+  .acme-progress-bar.large .progress-header {
+    font-size: 0.875rem;
+  }
+  
+  .circular-progress-value {
+    font-size: 0.75rem;
+  }
+  
+  .gauge-value {
+    font-size: 0.875rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill,
+  .progress-circle,
+  .gauge-fill {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .progress-track {
+    border: 1px solid;
+  }
+  
+  .progress-fill {
+    border: 1px solid;
+  }
+}
+
+/* Focus states for accessibility */
+.acme-progress-bar:focus-within,
+.acme-circular-progress:focus-within,
+.acme-gauge:focus-within {
+  outline: 2px solid var(--primary-color, #3498db);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
