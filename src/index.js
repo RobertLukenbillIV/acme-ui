@@ -52,6 +52,11 @@ export { default as StatCard } from './components/StatCard';
 export { default as ProgressBar } from './components/ProgressBar';
 export { default as Timeline } from './components/Timeline';
 
+// TypeScript Ticket Components
+export { default as TicketList } from './components/TicketList';
+export { default as TicketDetail } from './components/TicketDetail';
+export { default as CommentThread } from './components/CommentThread';
+
 // Authentication & Utility Components
 export { default as AuthForm } from './components/AuthForm';
 export { default as UserAvatarMenu } from './components/UserAvatarMenu';

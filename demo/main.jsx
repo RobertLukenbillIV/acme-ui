@@ -22,6 +22,7 @@ import NavigationPage from './pages/NavigationPage.jsx';
 import TypographyPage from './pages/TypographyPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import DataVisualizationPage from './pages/DataVisualizationPage.jsx';
+import TicketsPage from './pages/TicketsPage.tsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
 import './demo.css';
 
@@ -45,6 +46,7 @@ const navigationLinks = [
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Navigation', href: '/navigation' },
       { label: 'Data Visualization', href: '/data-visualization' },
+      { label: 'Tickets', href: '/tickets' },
       { label: 'Community', href: '/forum' }
     ]
   },
@@ -195,6 +197,7 @@ function AppContent() {
           <Route path="/typography" element={<TypographyPage />} />
           <Route path="/ui-components" element={<UIComponentsPage />} />
           <Route path="/data-visualization" element={<DataVisualizationPage />} />
+          <Route path="/tickets" element={<TicketsPage />} />
         </Routes>
       </main>
       
