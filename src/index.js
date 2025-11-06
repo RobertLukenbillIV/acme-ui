@@ -57,6 +57,11 @@ export { default as TicketList } from './components/TicketList';
 export { default as TicketDetail } from './components/TicketDetail';
 export { default as CommentThread } from './components/CommentThread';
 
+// Authentication & Protected Routes
+export { ProtectedRoute, RequireRole, RequireScope, AuthGuard } from './components/Auth';
+export { AuthProvider, useAuth } from './contexts/AuthContext';
+export { useAuthenticatedFetch, useAuthenticatedJson } from './hooks/useAuthenticatedFetch';
+
 // Authentication & Utility Components
 export { default as AuthForm } from './components/AuthForm';
 export { default as UserAvatarMenu } from './components/UserAvatarMenu';

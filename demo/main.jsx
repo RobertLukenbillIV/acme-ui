@@ -23,7 +23,9 @@ import TypographyPage from './pages/TypographyPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import DataVisualizationPage from './pages/DataVisualizationPage.jsx';
 import TicketsPage from './pages/TicketsPage.tsx';
+import AuthDemoPage from './pages/AuthDemoPage.tsx';
 import { ThemeProvider, useTheme } from './theme.jsx';
+import { AuthProvider } from '../src/contexts/AuthContext';
 import './demo.css';
 
 const navigationLinks = [
@@ -42,6 +44,7 @@ const navigationLinks = [
       { label: 'Primitives', href: '/primitives' },
       { label: 'Typography', href: '/typography' },
       { label: 'Authentication', href: '/auth' },
+      { label: 'Auth Demo', href: '/auth-demo' },
       { label: 'Forms', href: '/forms' },
       { label: 'UI Components', href: '/ui-components' },
       { label: 'Navigation', href: '/navigation' },
@@ -187,6 +190,7 @@ function AppContent() {
           <Route path="/primitives" element={<PrimitivesPage />} />
           <Route path="/typography" element={<TypographyPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          <Route path="/auth-demo" element={<AuthDemoPage />} />
           <Route path="/static-hero" element={<StaticHeroPage />} />
           <Route path="/sticky-hero" element={<StickyHeroPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
@@ -257,9 +261,11 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
+      <AuthProvider authApiUrl="http://localhost:8080/api/auth">
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
