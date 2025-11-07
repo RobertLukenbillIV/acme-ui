@@ -16,3 +16,4 @@ export * from './errors';
 export * from './pagination';
 export * from './tickets';
 export * from './comments';
+export * from './auth';

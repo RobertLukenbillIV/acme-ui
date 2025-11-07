@@ -484,7 +484,124 @@ function App() {
 export default App;
 ```
 
-## 🛠️ Development
+## � Authentication Integration
+
+Acme UI includes a complete JWT authentication integration with **acme-auth-service** backend. The authentication system provides:
+
+- **JWT-based authentication** with access and refresh tokens
+- **Role-based access control (RBAC)** with roles and scopes
+- **Secure token storage** in localStorage
+- **Automatic token refresh** before expiration
+- **Protected routes** and components based on authentication/roles/scopes
+- **Multi-tenant support** with tenant slug in signup
+
+### Authentication Components
+
+- `AuthContext` - React context for authentication state management
+- `AuthApiService` - Handles all auth API calls (signup, login, refresh, logout, profile)
+- `TokenStorage` - Secure JWT token management utility
+- `ProtectedRoute` - Route guard requiring authentication
+- `RequireRole` - HOC for role-based access control
+- `RequireScope` - HOC for scope-based access control
+- `useAuthenticatedFetch` - Hook for making authenticated API requests
+- `AuthDemoPage` - Comprehensive demo with signup/login forms and profile display
+
+### Quick Setup with acme-auth-service
+
+To run the authentication demo locally, you'll need the acme-auth-service backend running.
+
+#### 1. Clone and Setup acme-auth-service
+
+```bash
+# Clone the auth service repository
+cd /workspaces
+git clone https://github.com/RobertLukenbillIV/acme-auth-service.git
+cd acme-auth-service
+
+# Build the service (skip tests for faster build)
+mvn clean install -DskipTests
+```
+
+#### 2. Configure for Local Development
+
+The auth service needs Flyway migrations enabled and CORS configured for your environment:
+
+```bash
+# Enable Flyway migrations (creates default tenant)
+sed -i 's/spring.flyway.enabled=false/spring.flyway.enabled=true/' src/main/resources/application.properties
+
+# Set JPA to validate mode (let Flyway manage schema)
+sed -i 's/spring.jpa.hibernate.ddl-auto=update/spring.jpa.hibernate.ddl-auto=validate/' src/main/resources/application.properties
+
+# Add your Codespace URL to CORS (if running in GitHub Codespaces)
+# Replace YOUR-CODESPACE-URL with your actual codespace URL
+sed -i 's|cors.allowed-origins=.*|cors.allowed-origins=http://localhost:3000,http://localhost:3001,https://YOUR-CODESPACE-URL-3001.app.github.dev,https://YOUR-CODESPACE-URL-3000.app.github.dev|' src/main/resources/application.properties
+```
+
+#### 3. Start the Services
+
+```bash
+# Start auth service (runs on port 8080)
+cd /workspaces/acme-auth-service
+mvn spring-boot:run
+
+# In another terminal, start the acme-ui demo (runs on port 3000)
+cd /workspaces/acme-ui
+npm run dev
+```
+
+#### 4. Make Ports Public (GitHub Codespaces)
+
+If you're running in a GitHub Codespace:
+1. Open the **PORTS** tab in VS Code (bottom panel)
+2. Find port **8080** (auth service)
+3. Right-click → **Port Visibility** → **Public**
+4. Find port **3000** (or 3001 if 3000 is taken)
+5. Right-click → **Port Visibility** → **Public**
+
+#### 5. Test Authentication
+
+1. Navigate to the **Authentication Demo** page in the UI
+2. The "Organization Slug" field is pre-filled with `"default"` (the tenant created by Flyway migrations)
+3. Fill in your email, password (must meet requirements), and name
+4. Click **"Create Account"** to sign up
+5. You'll see your user profile with roles and scopes from the JWT token
+
+### Using Authentication in Your App
+
+```jsx
+import { AuthContext, ProtectedRoute, RequireRole } from 'acme-ui';
+
+function App() {
+  return (
+    <AuthProvider>
+      {/* Public route */}
+      <Route path="/login" element={<LoginPage />} />
+      
+      {/* Protected route - requires authentication */}
+      <ProtectedRoute>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </ProtectedRoute>
+      
+      {/* Role-protected route - requires specific role */}
+      <RequireRole role="ROLE_ADMIN">
+        <Route path="/admin" element={<AdminPanel />} />
+      </RequireRole>
+    </AuthProvider>
+  );
+}
+```
+
+### Environment Variables
+
+The authentication system automatically detects if you're running in a GitHub Codespace and adjusts the API URL accordingly. For production, set:
+
+```bash
+# Optional: Override the auth service URL
+REACT_APP_AUTH_API_URL=https://your-auth-service.com/api/auth
+```
+
+## �🛠️ Development
 
 ### Scripts
 ```bash
